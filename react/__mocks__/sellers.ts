@@ -1,3 +1,5 @@
+import { Seller } from 'vtex.product-context/react/ProductTypes'
+
 const unsortedSellersMock = [
   {
     sellerId: '1',
@@ -125,6 +127,6 @@ const unsortedSellersMock = [
       Installments: [],
     },
   },
-]
+] as Seller[]
 
 export { unsortedSellersMock }

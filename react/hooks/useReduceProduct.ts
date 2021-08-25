@@ -9,30 +9,27 @@ interface ReducerInterface {
   productSelectedItem: Item | undefined
 }
 
-const initialValue: ReducerInterface = {
-  productItemsWithoutSelected: [],
-  productSelectedItem: undefined,
-}
-
 export const useReduceProduct = (
   productContext: Partial<ProductContextState>
 ): ReducerInterface => {
-  const reducer = useCallback(
-    (acumulator: ReducerInterface, currentValue: Item) => {
-      if (currentValue.itemId === productContext.selectedItem?.itemId) {
-        acumulator.productSelectedItem = { ...currentValue }
-      } else {
-        acumulator.productItemsWithoutSelected?.push({ ...currentValue })
-      }
-
-      return acumulator
-    },
-    [productContext.selectedItem?.itemId]
-  )
-
-  if (!productContext.product) {
-    return initialValue
+  const initialValue: ReducerInterface = {
+    productItemsWithoutSelected: [],
+    productSelectedItem: undefined,
   }
 
-  return productContext.product.items.reduce(reducer, initialValue)
+  const reducer = (acumulator: ReducerInterface, currentValue: Item) => {
+    if (currentValue.itemId === productContext.selectedItem?.itemId) {
+      acumulator.productSelectedItem = { ...currentValue }
+    } else {
+      acumulator.productItemsWithoutSelected?.push({ ...currentValue })
+    }
+
+    return acumulator
+  }
+
+  if (!productContext.product) {
+    return { ...initialValue }
+  }
+
+  return productContext.product.items.reduce(reducer, { ...initialValue })
 }
