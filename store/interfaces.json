@@ -1,0 +1,6 @@
+{
+  "buybox-context": {
+    "component": "BuyboxContext",
+    "composition": "children"
+  }
+}
