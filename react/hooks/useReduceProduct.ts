@@ -17,15 +17,18 @@ export const useReduceProduct = (
     productSelectedItem: undefined,
   }
 
-  const reducer = (acumulator: ReducerInterface, currentValue: Item) => {
-    if (currentValue.itemId === productContext.selectedItem?.itemId) {
-      acumulator.productSelectedItem = { ...currentValue }
-    } else {
-      acumulator.productItemsWithoutSelected?.push({ ...currentValue })
-    }
+  const reducer = useCallback(
+    (acumulator: ReducerInterface, currentValue: Item) => {
+      if (currentValue.itemId === productContext.selectedItem?.itemId) {
+        acumulator.productSelectedItem = { ...currentValue }
+      } else {
+        acumulator.productItemsWithoutSelected?.push({ ...currentValue })
+      }
 
-    return acumulator
-  }
+      return acumulator
+    },
+    [productContext.selectedItem?.itemId]
+  )
 
   if (!productContext.product) {
     return { ...initialValue }
