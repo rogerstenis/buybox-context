@@ -12,10 +12,13 @@ import { useReduceProduct } from './hooks/useReduceProduct'
 type Strategies = 'price' | 'priceShipping'
 
 interface Props {
-  sortStrategy: Strategies
+  sortStrategy?: Strategies
 }
 
-const BuyboxContext: StorefrontFunctionComponent<Props> = ({ children }) => {
+const BuyboxContext: StorefrontFunctionComponent<Props> = ({
+  children,
+  sortStrategy,
+}) => {
   const productContext = useProduct() ?? {}
 
   const { productSelectedItem, productItemsWithoutSelected } = useReduceProduct(
@@ -57,13 +60,15 @@ const BuyboxContext: StorefrontFunctionComponent<Props> = ({ children }) => {
     return productWithSortedSellers ?? productContext.product
   }, [productContext.product, productWithSortedSellers])
 
-  return (
+  return sortStrategy ? (
     <ProductContextProvider
       query={{ skuId: productContext.selectedItem?.itemId }}
       product={newProduct}
     >
       {children}
     </ProductContextProvider>
+  ) : (
+    <>{children}</>
   )
 }
 
