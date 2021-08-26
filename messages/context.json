@@ -1,3 +1,7 @@
 {
-  "admin/editor.buybox-context.title": "Buybox Context"
+  "admin/editor.buybox-context.title": "Buybox Context",
+  "admin/editor.buybox-context.sortStrategy-title": "Sort Strategy",
+  "admin/editor.buybox-context.sortStrategy-description": "Configure strategy to sort sellers on buybox",
+  "admin/editor.buybox-context.price.label": "Price",
+  "admin/editor.buybox-context.price-and-shipping.label": "Price and Shipping"
 }

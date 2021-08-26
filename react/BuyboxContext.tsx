@@ -9,7 +9,13 @@ import type {
 import { sortSellersByPrice } from './utils'
 import { useReduceProduct } from './hooks/useReduceProduct'
 
-const BuyboxContext: StorefrontFunctionComponent = ({ children }) => {
+type Strategies = 'price' | 'priceShipping'
+
+interface Props {
+  sortStrategy: Strategies
+}
+
+const BuyboxContext: StorefrontFunctionComponent<Props> = ({ children }) => {
   const productContext = useProduct() ?? {}
 
   const { productSelectedItem, productItemsWithoutSelected } = useReduceProduct(
@@ -65,11 +71,29 @@ const messages = defineMessages({
   title: {
     id: 'admin/editor.buybox-context.title',
   },
+  sortStrategyTitle: {
+    id: 'admin/editor.buybox-context.sortStrategy-title',
+  },
+  sortStrategyDescription: {
+    id: 'admin/editor.buybox-context.sortStrategy-description',
+  },
 })
 
 BuyboxContext.schema = {
   title: messages.title.id,
   type: 'object',
+  properties: {
+    sortStrategy: {
+      type: 'string',
+      title: messages.sortStrategyTitle.id,
+      description: messages.sortStrategyDescription.id,
+      enum: ['price', 'priceShipping'],
+      enumNames: [
+        'admin/editor.buybox-context.price.label',
+        'admin/editor.buybox-context.price-and-shipping.label',
+      ],
+    },
+  },
 }
 
 export default BuyboxContext
