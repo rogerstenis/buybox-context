@@ -8,6 +8,7 @@ import { useProduct } from 'vtex.product-context'
 import SimulateShippingQuery from '../graphql/SimulateShipping.gql'
 import { SellerLogisticsInfoResult } from '../typings/types'
 
+// ToDo: criar testes
 export const useSellerLogisticsInfo = (): SellerLogisticsInfoResult[] => {
   const { selectedItem, selectedQuantity } = useProduct() ?? {}
   const orderFormContext = OrderForm?.useOrderForm() ?? {}

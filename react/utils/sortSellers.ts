@@ -16,7 +16,6 @@ export const sortSellersByPrice = (
   return sortedList
 }
 
-// ToDo: criar testes
 export const sortSellersByPriceShipping = (
   sellersInfo: SellerLogisticsInfoResult[]
 ) => {
@@ -25,19 +24,19 @@ export const sortSellersByPriceShipping = (
   const sortedList = [...sellersInfo]
 
   sortedList.sort((sellerA, sellerB) => {
-    if (sellerA.logisticsInfo.slas.length === 0) {
+    if (sellerA.logisticsInfo.slas?.length === 0) {
       return 1
     }
 
-    if (sellerB.logisticsInfo.slas.length === 0) {
+    if (sellerB.logisticsInfo.slas?.length === 0) {
       return -1
     }
 
-    const shippingPriceA = sellerA.logisticsInfo.slas.length
+    const shippingPriceA = sellerA.logisticsInfo.slas?.length
       ? sellerA.logisticsInfo.slas[0].price / 100
       : 0
 
-    const shippingPriceB = sellerB.logisticsInfo.slas.length
+    const shippingPriceB = sellerB.logisticsInfo.slas?.length
       ? sellerB.logisticsInfo.slas[0].price / 100
       : 0
 

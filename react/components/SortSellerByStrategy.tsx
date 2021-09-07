@@ -1,6 +1,5 @@
 import React, { ReactNode, useMemo } from 'react'
 import { ProductContextProvider, useProduct } from 'vtex.product-context'
-import { MaybeProduct } from 'vtex.product-context/react/ProductTypes'
 
 import {
   LogisticsInfo,
@@ -14,7 +13,7 @@ import {
   sortSellersByPrice,
   sortSellersByPriceShipping,
 } from '../utils/sortSellers'
-import { useReduceProduct } from '../hooks/useReduceProduct'
+import { useNewProductWithSellers } from '../hooks/useNewProductWithSellers'
 
 const SortStrategyFunctions: {
   [key in Strategies]: (
@@ -63,38 +62,7 @@ export const SortSellerByStrategy = ({ children, sortStrategy }: Props) => {
     logisticsInfo: [],
   })
 
-  // ToDo: Criar hook para essa transformação do produto
-  const { productSelectedItem, productItemsWithoutSelected } = useReduceProduct(
-    productContext
-  )
-
-  const productWithSortedSellers = useMemo<MaybeProduct>(() => {
-    if (
-      productContext.product &&
-      productSelectedItem &&
-      productItemsWithoutSelected
-    ) {
-      return {
-        ...productContext.product,
-        items: [
-          ...productItemsWithoutSelected,
-          { ...productSelectedItem, sellers: [...sellers] },
-        ],
-      }
-    }
-
-    return undefined
-  }, [
-    productContext.product,
-    productSelectedItem,
-    productItemsWithoutSelected,
-    sellers,
-  ])
-
-  const newProduct = useMemo(() => {
-    return productWithSortedSellers ?? productContext.product
-  }, [productContext.product, productWithSortedSellers])
-  //
+  const newProduct = useNewProductWithSellers({ productContext, sellers })
 
   return (
     <ProductContextProvider
