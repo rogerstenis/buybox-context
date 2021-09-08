@@ -7,7 +7,6 @@ import {
   SellerLogisticsInfoResult,
   Strategies,
 } from '../typings/types'
-import SellerBody from './SellerBody'
 import { useSellerLogisticsInfo } from '../hooks/useSellerLogisticsInfo'
 import {
   sortSellersByPrice,
@@ -57,7 +56,7 @@ export const SortSellerByStrategy = ({ children, sortStrategy }: Props) => {
     return acumulator
   }
 
-  const { sellers, logisticsInfo } = sortedSellers.reduce(reducer, {
+  const { sellers } = sortedSellers.reduce(reducer, {
     sellers: [],
     logisticsInfo: [],
   })
@@ -69,10 +68,7 @@ export const SortSellerByStrategy = ({ children, sortStrategy }: Props) => {
       query={{ skuId: productContext.selectedItem?.itemId }}
       product={newProduct}
     >
-      {/* ToDo: deixar o seller body independente do ProductContextProvider. Talvez criar um BuyBoxProvider para armazenar os dados ordenados e utilizar isso no SellerBody  */}
-      <SellerBody sellers={sellers} logisticsInfo={logisticsInfo}>
-        {children}
-      </SellerBody>
+      {children}
     </ProductContextProvider>
   )
 }
