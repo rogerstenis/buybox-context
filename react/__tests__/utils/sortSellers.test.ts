@@ -166,12 +166,12 @@ describe('sortSellersByPriceShipping', () => {
     )
 
     // assert
-    expect(
-      sortedSellers.filter((seller) => seller.logisticsInfo.slas.length)
-    ).toStrictEqual(hasSLA)
-    expect(
-      sortedSellers.filter((seller) => !seller.logisticsInfo.slas.length)
-    ).toStrictEqual(hasNotSLA)
+    const SLAs = sortedSellers.filter(
+      (seller) => seller.logisticsInfo.slas.length
+    )
+
+    expect(SLAs).toStrictEqual(hasSLA)
+    expect(sortedSellers.splice(SLAs.length)).toStrictEqual(hasNotSLA)
   })
 
   it('should return a array empty', () => {
