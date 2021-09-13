@@ -1,4 +1,4 @@
-import { ShippingQuote } from 'vtex.seller-selector/react/SellerContext'
+import type { ShippingQuote } from 'vtex.seller-selector/react/SellerContext'
 import { useLazyQuery } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
 import { useEffect, useMemo } from 'react'
@@ -6,9 +6,9 @@ import { OrderForm } from 'vtex.order-manager'
 import { useProduct } from 'vtex.product-context'
 
 import SimulateShippingQuery from '../graphql/SimulateShipping.gql'
-import { SellerLogisticsInfoResult } from '../typings/types'
+import type { SellerLogisticsInfoResult } from '../typings/types'
 
-// ToDo: criar testes
+// TODO: criar testes
 export const useSellerLogisticsInfo = (): SellerLogisticsInfoResult[] => {
   const { selectedItem, selectedQuantity } = useProduct() ?? {}
   const orderFormContext = OrderForm?.useOrderForm() ?? {}
@@ -45,15 +45,20 @@ export const useSellerLogisticsInfo = (): SellerLogisticsInfoResult[] => {
     shippingItems,
   ])
 
+  const logisticsInfo = useMemo(
+    () => shippingData?.shipping.logisticsInfo,
+    [shippingData?.shipping.logisticsInfo]
+  )
+
   useEffect(() => {
     updateShippingQuotes({ variables: { ...variables } })
   }, [updateShippingQuotes, variables])
 
-  return selectedItem && shippingData
+  return selectedItem && logisticsInfo
     ? selectedItem.sellers.map((seller, index) => {
         return {
           seller,
-          logisticsInfo: shippingData.shipping.logisticsInfo[index],
+          logisticsInfo: logisticsInfo[index],
         }
       })
     : []

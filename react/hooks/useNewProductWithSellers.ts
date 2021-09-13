@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
-import {
+import type {
   MaybeProduct,
   ProductContextState,
 } from 'vtex.product-context/react/ProductTypes'
 
-import { Seller } from '../typings/types'
+import type { Seller } from '../typings/types'
 import { useReduceProduct } from './useReduceProduct'
 
 interface Props {
@@ -12,14 +12,13 @@ interface Props {
   sellers: Seller[]
 }
 
-// ToDo: criar testes
+// TODO: criar testes
 export const useNewProductWithSellers = ({
   productContext,
   sellers,
 }: Props): MaybeProduct => {
-  const { productSelectedItem, productItemsWithoutSelected } = useReduceProduct(
-    productContext
-  )
+  const { productSelectedItem, productItemsWithoutSelected } =
+    useReduceProduct(productContext)
 
   const productWithSortedSellers = useMemo<MaybeProduct>(() => {
     if (

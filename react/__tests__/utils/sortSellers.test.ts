@@ -1,4 +1,4 @@
-import { SellerLogisticsInfoResult } from '../../typings/types'
+import type { SellerLogisticsInfoResult } from '../../typings/types'
 import {
   sortSellersByPrice,
   sortSellersByPriceShipping,
@@ -12,14 +12,8 @@ import {
 describe('sortSellersByPrice', () => {
   it('should sort sellers correctly', () => {
     // arrange
-    const [
-      seller1,
-      seller2,
-      seller3,
-      seller4,
-      seller5,
-      seller6,
-    ] = unsortedSellersMock
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersMock
 
     const expected: SellerLogisticsInfoResult[] = [
       seller3,
@@ -41,14 +35,8 @@ describe('sortSellersByPrice', () => {
 
   it('should mantain sellers sort', () => {
     // arrange
-    const [
-      seller1,
-      seller2,
-      seller3,
-      seller4,
-      seller5,
-      seller6,
-    ] = unsortedSellersMock
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersMock
 
     const expected: SellerLogisticsInfoResult[] = [
       seller3,
@@ -84,14 +72,8 @@ describe('sortSellersByPrice', () => {
 describe('sortSellersByPriceShipping', () => {
   it('should sort sellers correctly', () => {
     // arrange
-    const [
-      seller1,
-      seller2,
-      seller3,
-      seller4,
-      seller5,
-      seller6,
-    ] = unsortedSellersShippingMock
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersShippingMock
 
     const expected: SellerLogisticsInfoResult[] = [
       seller5,
@@ -102,7 +84,8 @@ describe('sortSellersByPriceShipping', () => {
       seller4,
     ]
 
-    const unsortedSellers: SellerLogisticsInfoResult[] = unsortedSellersShippingMock
+    const unsortedSellers: SellerLogisticsInfoResult[] =
+      unsortedSellersShippingMock
 
     // act
     const sortedSellers = sortSellersByPriceShipping(unsortedSellers)
@@ -113,14 +96,8 @@ describe('sortSellersByPriceShipping', () => {
 
   it('should mantain sellers sort', () => {
     // arrange
-    const [
-      seller1,
-      seller2,
-      seller3,
-      seller4,
-      seller5,
-      seller6,
-    ] = unsortedSellersShippingMock
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersShippingMock
 
     const expected: SellerLogisticsInfoResult[] = [
       seller5,
@@ -142,14 +119,8 @@ describe('sortSellersByPriceShipping', () => {
 
   it('should set seller to last position when have not SLA', () => {
     // arrange
-    const [
-      seller1,
-      seller2,
-      seller3,
-      seller4,
-      seller5,
-      seller6,
-    ] = unsortedSellersShippingMock
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersShippingMock
 
     const hasSLA: SellerLogisticsInfoResult[] = [
       seller5,
@@ -167,7 +138,7 @@ describe('sortSellersByPriceShipping', () => {
 
     // assert
     const SLAs = sortedSellers.filter(
-      (seller) => seller.logisticsInfo.slas.length
+      (seller) => seller.logisticsInfo?.slas.length
     )
 
     expect(SLAs).toStrictEqual(hasSLA)
