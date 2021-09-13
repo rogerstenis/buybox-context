@@ -37,9 +37,14 @@ const messages = defineMessages({
   sortStrategyDescription: {
     id: 'admin/editor.buybox-context.sortStrategy-description',
   },
+  triggerCepChangeEventTitle: {
+    id: 'admin/editor.buybox-context.triggerCepChangeEvent-title',
+  },
+  triggerCepChangeEventDescription: {
+    id: 'admin/editor.buybox-context.triggerCepChangeEvent-description',
+  },
 })
 
-// TODO: adicionar parâmetro de triggerCepChangeEvent
 BuyboxApp.schema = {
   title: messages.title.id,
   type: 'object',
@@ -53,6 +58,17 @@ BuyboxApp.schema = {
         'admin/editor.buybox-context.price.label',
         'admin/editor.buybox-context.price-and-shipping.label',
       ],
+    },
+    triggerCepChangeEvent: {
+      type: 'string',
+      title: messages.triggerCepChangeEventTitle.id,
+      description: messages.triggerCepChangeEventDescription.id,
+      enum: ['orderForm', 'sellerSelector'],
+      enumNames: [
+        'admin/editor.buybox-context.order-form.label',
+        'admin/editor.buybox-context.seller-selector.label',
+      ],
+      default: 'orderForm',
     },
   },
 }
