@@ -3,7 +3,7 @@
     "component": "BuyboxApp",
     "composition": "children"
   },
-  "seller-body": {
+  "seller-body.buybox": {
     "component": "SellerBody",
     "composition": "children"
   }
