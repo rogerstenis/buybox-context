@@ -63,7 +63,7 @@ Now, you are able to use all the blocks exported by the `buybox-context` app. Ch
 
 - `children` array: Array with `block` components
 
-📢 *The `sortStrategy` and `triggerCepChangeEvent` can be changed using Site Editor*
+📢 _The `sortStrategy` and `triggerCepChangeEvent` can be changed using Site Editor_
 
 ### `seller-body.buybox` props
 
@@ -123,7 +123,7 @@ After add the `buybox-context` in this example, the new code will be like bellow
 }
 ```
 
-:information_source: *By default the prop `triggerCepChangeEvent` value is `orderForm`, so here it prop is optional.*
+:information_source: _By default the prop `triggerCepChangeEvent` value is `orderForm`, so here it prop is optional._
 
 ### Sellers
 
@@ -131,7 +131,7 @@ With [seller-selector](https://github.com/vtex-apps/seller-selector) and `buybox
 
 ```json
 {
-  "store.buybox": {
+  "store.seller": {
     "blocks": ["vtex.seller-selector:seller-table"]
   },
   "vtex.seller-selector:seller-table": {
@@ -157,7 +157,7 @@ With [seller-selector](https://github.com/vtex-apps/seller-selector) and `buybox
 That way you will have a page similar to this:
 ![image](https://user-images.githubusercontent.com/17439470/133501110-e143b472-1b58-4ee8-8759-8096ca32df0c.png)
 
-:information_source: *To have the full behaviour using `seller-body.buybox` do you need set the `triggerCepChangeEvent` as `sellerSelector` props on `buybox-context`. Because the default value for this parameter is `orderForm`, but on this page we usually use the `seller-simulate-shipping` to calculate shipping*
+:information_source: _To have the full behaviour using `seller-body.buybox` do you need set the `triggerCepChangeEvent` as `sellerSelector` props on `buybox-context`. Because the default value for this parameter is `orderForm`, but on this page we usually use the `seller-simulate-shipping` to calculate shipping_
 
 ## Customization
 
