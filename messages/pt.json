@@ -1,5 +1,5 @@
 {
-  "admin/editor.buybox-context.title": "Contexto de Caixa de Compra",
+  "admin/editor.buybox-context.title": "Contexto de Buybox",
   "admin/editor.buybox-context.sortStrategy-title": "Estratégia de ordenação",
   "admin/editor.buybox-context.sortStrategy-description": "Configure a estratégia para ordenar os vendedores na buybox",
   "admin/editor.buybox-context.triggerCepChangeEvent-title": "Evento de mudança de CEP",
