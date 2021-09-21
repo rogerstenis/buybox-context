@@ -1,3 +1,7 @@
 {
-  "admin/editor.buybox-context.title": "Contexto de Buybox"
+  "admin/editor.buybox-context.title": "Contexto de Buybox",
+  "admin/editor.buybox-context.sortStrategy-title": "Estratégia de ordenação",
+  "admin/editor.buybox-context.sortStrategy-description": "Configure a estratégia para ordenar os vendedores na buybox",
+  "admin/editor.buybox-context.price.label": "Preço",
+  "admin/editor.buybox-context.price-and-shipping.label": "Preço e Frete"
 }

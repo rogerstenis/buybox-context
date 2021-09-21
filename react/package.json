@@ -19,6 +19,12 @@
     "apollo-cache-inmemory": "^1.6.5",
     "graphql": "^14.6.0",
     "typescript": "3.9.7",
-    "vtex.product-context": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.x/public/@types/vtex.product-context"
+    "vtex.product-context": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.x/public/@types/vtex.product-context",
+    "vtex.order-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.x/public/@types/vtex.order-manager",
+    "vtex.store-components": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-components@3.x/public/@types/vtex.store-components",
+    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.x/public/@types/vtex.css-handles",
+    "vtex.store-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.136.9/public/@types/vtex.store-graphql",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.x/public/@types/vtex.render-runtime",
+    "vtex.seller-selector": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.x/public/@types/vtex.seller-selector"
   }
 }
