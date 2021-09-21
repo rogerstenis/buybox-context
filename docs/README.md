@@ -53,7 +53,7 @@ Now, you are able to use all the blocks exported by the `buybox-context` app. Ch
   | Prop name | Type | Description |
   | --------- | -------- | ----------- |
   | `price` | `string` | Sort sellers **only product price**. The sellers at the top of the list will have the lowest prices. |
-  | `priceShipping` | `string` | Sort sellers by **product price + shipping price**. How much lowest the sum of this two values, more at the top of sellers list. |
+  | `priceShipping` | `string` | Sort sellers by **product price + shipping price**. The lowest sum between these two values, will be positioned at the top of the sellers list. |
 
 - `triggerCepChangeEvent` enum:
   | Prop name | Type | Description |
