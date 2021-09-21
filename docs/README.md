@@ -1,4 +1,4 @@
-📢 Use this project, [contribute](https://github.com/{OrganizationName}/{AppName}) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+=� Use this project, [contribute](https://github.com/{OrganizationName}/{AppName}) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # APP NAME
 
@@ -89,7 +89,7 @@ If there are none, add the following sentence instead:
 
 <!-- DOCS-IGNORE:start -->
 
-## Contributors ✨
+## Contributors (
 
 Thanks goes to these wonderful people:
 
@@ -112,3 +112,8 @@ Check out some documentation models that are already live:
 - [Condition Layout](https://vtex.io/docs/components/all/vtex.condition-layout@1.1.6/)
 - [Add To Cart Button](https://vtex.io/docs/components/content-blocks/vtex.add-to-cart-button@0.9.0/)
 - [Store Form](https://vtex.io/docs/components/all/vtex.store-form@0.3.4/)
+
+
+**Upcoming documentation:**
+
+ - [Feature/brpa 307 strategy price shipping](https://github.com/vtex-apps/buybox-context/pull/3)
