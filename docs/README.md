@@ -98,7 +98,7 @@ On product page you can add the `buybox-context` where make sense the behavior o
 }
 ```
 
-After add the `buybox-context` in this example, the new code will be like bellow:
+After adding the `buybox-context` in this example, the new code will be like bellow:
 
 ```diff
 {
