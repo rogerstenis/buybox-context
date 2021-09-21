@@ -123,7 +123,7 @@ After adding the `buybox-context` in this example, the new code will be like bel
 }
 ```
 
-:information_source: _By default the prop `triggerCepChangeEvent` value is `orderForm`, so here it prop is optional._
+:information*source: \_By default the prop `triggerCepChangeEvent` value is `orderForm`, so here it prop is optional.*
 
 ### Sellers
 
@@ -157,7 +157,7 @@ With [seller-selector](https://github.com/vtex-apps/seller-selector) and `buybox
 That way you will have a page similar to this:
 ![image](https://user-images.githubusercontent.com/17439470/133501110-e143b472-1b58-4ee8-8759-8096ca32df0c.png)
 
-:information_source: _To have the full behaviour using `seller-body.buybox` do you need set the `triggerCepChangeEvent` as `sellerSelector` props on `buybox-context`. Because the default value for this parameter is `orderForm`, but on this page we usually use the `seller-simulate-shipping` to calculate shipping_
+:information*source: \_To have the full behaviour using `seller-body.buybox` do you need set the `triggerCepChangeEvent` as `sellerSelector` props on `buybox-context`. Because the default value for this parameter is `orderForm`, but on this page we usually use the `seller-simulate-shipping` to calculate shipping*
 
 ## Customization
 
@@ -169,7 +169,7 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 <!-- DOCS-IGNORE:start -->
 
-## Contributors ✨
+## Contributors (
 
 Thanks goes to these wonderful people:
 
