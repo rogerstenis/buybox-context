@@ -25,7 +25,7 @@ In this section, you first must **add the primary instructions** that will allow
   }
 ```
 
-2. Wrap a block tah use the [`Product Context`](https://github.com/vtex-apps/product-context) and configure the `sortStrategy` will be used to sort the sellers.
+2. Wrap a block that uses the [`Product Context`](https://github.com/vtex-apps/product-context) and configure the `sortStrategy` that will be used to sort the sellers.
 
 ```json
   "buybox-context": {
