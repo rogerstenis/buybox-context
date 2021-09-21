@@ -59,7 +59,7 @@ Now, you are able to use all the blocks exported by the `buybox-context` app. Ch
   | Prop name | Type | Description |
   | --------- | -------- | ----------- |
   | `orderForm` | `string` | Used for listening [`useOrderForm()`](https://github.com/vtex-apps/order-manager#orderform-orderform) changes, to get sellers and logistics info to sort seller list with new shipping values. |
-  | `sellerSelector` | `string` | Used to listening [`useSellerContext()`]() changes, to get sellers and logistics info to sort seller list with new shipping values. |
+  | `sellerSelector` | `string` | Used for listening [`useSellerContext()`]() changes, to get sellers and logistics info to sort seller list with new shipping values. |
 
 - `children` array: Array with `block` components
 
