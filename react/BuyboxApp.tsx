@@ -6,22 +6,23 @@ import BuyboxProvider from './provider/BuyboxProvider'
 import type { Strategies, TriggerCepChangeEventType } from './typings/types'
 
 interface Props {
-  sortStrategy?: Strategies
+  conditionalStrategy?: {
+    sortStrategy?: Strategies
+    expression: string
+  }
   triggerCepChangeEvent?: TriggerCepChangeEventType
-  expression: string
 }
 
 const BuyboxApp: StorefrontFunctionComponent<Props> = ({
   children,
-  sortStrategy,
-  expression,
+  conditionalStrategy,
   triggerCepChangeEvent = 'orderForm',
 }) => {
-  return sortStrategy ? (
+  return conditionalStrategy?.sortStrategy ? (
     <BuyboxProvider
-      sortStrategy={sortStrategy}
+      sortStrategy={conditionalStrategy.sortStrategy}
       triggerCepChangeEvent={triggerCepChangeEvent}
-      expression={expression}
+      expression={conditionalStrategy.expression}
     >
       <ProductWithSortedSellers>{children}</ProductWithSortedSellers>
     </BuyboxProvider>
@@ -58,21 +59,39 @@ BuyboxApp.schema = {
   title: messages.title.id,
   type: 'object',
   properties: {
-    sortStrategy: {
-      type: 'string',
-      title: messages.sortStrategyTitle.id,
-      description: messages.sortStrategyDescription.id,
-      enum: ['price', 'priceShipping', 'customExpression'],
-      enumNames: [
-        'admin/editor.buybox-context.price.label',
-        'admin/editor.buybox-context.price-and-shipping.label',
-        'admin/editor.buybox-context.custom-expression',
-      ],
-    },
-    expression: {
-      type: 'string',
-      title: messages.expressionTitle.id,
-      description: messages.expressionDescription.id,
+    conditionalStrategy: {
+      type: 'object',
+      properties: {
+        sortStrategy: {
+          type: 'string',
+          title: messages.sortStrategyTitle.id,
+          description: messages.sortStrategyDescription.id,
+          enum: ['price', 'priceShipping', 'customExpression'],
+          enumNames: [
+            'admin/editor.buybox-context.price.label',
+            'admin/editor.buybox-context.price-and-shipping.label',
+            'admin/editor.buybox-context.custom-expression',
+          ],
+        },
+      },
+      dependencies: {
+        sortStrategy: {
+          oneOf: [
+            {
+              properties: {
+                sortStrategy: {
+                  enum: ['customExpression'],
+                },
+                expression: {
+                  type: 'string',
+                  title: messages.expressionTitle.id,
+                  description: messages.expressionDescription.id,
+                },
+              },
+            },
+          ],
+        },
+      },
     },
     triggerCepChangeEvent: {
       type: 'string',
