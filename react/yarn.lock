@@ -2531,6 +2531,11 @@ expect@^25.5.0:
     jest-message-util "^25.5.0"
     jest-regex-util "^25.2.6"
 
+expr-eval@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/expr-eval/-/expr-eval-2.0.2.tgz#fa6f044a7b0c93fde830954eb9c5b0f7fbc7e201"
+  integrity sha512-4EMSHGOPSwAfBiibw3ndnP0AvjDWLsMvGOvWEZ2F96IGk0bIVdjQisOHxReSkE13mHcfbuCiXw+G4y0zv6N8Eg==
+
 extend-shallow@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"
@@ -5116,10 +5121,6 @@ verror@1.10.0:
 "vtex.seller-selector@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.x/public/@types/vtex.seller-selector":
   version "0.2.3"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.x/public/@types/vtex.seller-selector#4c431a5b14a52fefb01e88139ce7576dd5ded80d"
-
-"vtex.store-components@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-components@3.x/public/@types/vtex.store-components":
-  version "3.151.2"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-components@3.x/public/@types/vtex.store-components#730f3ea935d71752f611c4daa6d3ada93809ff6e"
 
 "vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.136.9/public/@types/vtex.store-graphql":
   version "2.136.9"
