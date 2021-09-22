@@ -1,6 +1,10 @@
 {
   "buybox-context": {
-    "component": "BuyboxContext",
+    "component": "BuyboxApp",
+    "composition": "children"
+  },
+  "seller-body.buybox": {
+    "component": "SellerBody",
     "composition": "children"
   }
 }

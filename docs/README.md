@@ -1,91 +1,171 @@
-=� Use this project, [contribute](https://github.com/{OrganizationName}/{AppName}) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+📢 Use this project, [contribute](https://github.com/vtex-apps/buybox-context) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-# APP NAME
+# Buybox Context
 
 <!-- DOCS-IGNORE:start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- DOCS-IGNORE:end -->
 
-Under the app's name, you should explain the topic, giving a **brief description** of its **functionality** in a store when installed.
+Buybox context is a component to add the possibility to sort the sellers of a product that is sold by multiple sellers.
+When Buybox context wrap a Product context, it change the ordenation of sellers and set the new `sellerDefault` on seller list of current product.
 
-Next, **add media** (either an image of a GIF) with the rendered components, so that users can better understand how the app works in practice. 
-
-![Media Placeholder](https://user-images.githubusercontent.com/52087100/71204177-42ca4f80-227e-11ea-89e6-e92e65370c69.png)
-
-## Configuration 
+## Configuration
 
 In this section, you first must **add the primary instructions** that will allow users to use the app's blocks in their store, such as:
 
 1. Adding the app as a theme dependency in the `manifest.json` file;
-2. Declaring the app's main block in a given theme template or inside another block from the theme.
 
-Remember to add a table with all blocks exported by the app and their descriptions. You can verify an example of it on the [Search Result documentation](https://vtex.io/docs/components/all/vtex.search-result@3.56.1/). 
+```json
+  "dependencies": {
+    "vtex.buybox-context": "0.x"
+  }
+```
 
-Next, add the **props table** containing your block's props. 
+2. Wrap a block that uses the [`Product Context`](https://github.com/vtex-apps/product-context) and configure the `sortStrategy` that will be used to sort the sellers.
 
-If the app exports more than one block, create several tables - one for each block. For example:
+```json
+  "buybox-context": {
+    "props": {
+      "sortStrategy": "priceShipping",
+      "triggerCepChangeEvent": "sellerSelector"
+    },
+    "children": [
+      ...
+    ]
+  }
+```
 
-### `block-1` props
+Now, you are able to use all the blocks exported by the `buybox-context` app. Check out the full list below:
 
-| Prop name    | Type            | Description    | Default value                                                                                                                               |
-| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
-| `XXXXX`      | `XXXXXX`       | XXXXXXXX         | `XXXXXX`        |
+### `buybox-context` props
 
+| Prop name               | Type    | Description                                                                                                                                                                                                        | Default value |
+| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
+| `sortStrategy`          | `enum`  | Use to select which sort strategy will be used to sort the sellers. If this prop isn't informed, nothing will be done.                                                                                             | `undefined`   |
+| `triggerCepChangeEvent` | `enum`  | The Buybox Context depends on CEP event to get Sellers of Product. Depending on context the Buybox Context is used, you can select what this component will be listening to intercept changes and reorder sellers. | `"orderForm"` |
+| `children`              | `array` | Array with `block` components, that use the `Product Context` to sort sellers.                                                                                                                                     | `null`        |
 
-### `block-2` props
+- `sortStrategy` enum:
+  | Prop name | Type | Description |
+  | --------- | -------- | ----------- |
+  | `price` | `string` | Sort sellers **only product price**. The sellers at the top of the list will have the lowest prices. |
+  | `priceShipping` | `string` | Sort sellers by **product price + shipping price**. The lowest sum between these two values, will be positioned at the top of the sellers list. |
 
-| Prop name    | Type            | Description    | Default value                                                                                                                               |
-| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
-| `XXXXX`      | `XXXXXX`       | XXXXXXXX         | `XXXXXX`        |
+- `triggerCepChangeEvent` enum:
+  | Prop name | Type | Description |
+  | --------- | -------- | ----------- |
+  | `orderForm` | `string` | Used for listening [`useOrderForm()`](https://github.com/vtex-apps/order-manager#orderform-orderform) changes, to get sellers and logistics info to sort seller list with new shipping values. |
+  | `sellerSelector` | `string` | Used for listening [`useSellerContext()`]() changes, to get sellers and logistics info to sort seller list with new shipping values. |
 
-Prop types are: 
+- `children` array: Array with `block` components
 
-- `string` 
-- `enum` 
-- `number` 
-- `boolean` 
-- `object` 
-- `array` 
+📢 _The `sortStrategy` and `triggerCepChangeEvent` can be changed using Site Editor_
 
-When documenting a prop whose type is `object` or `array` another prop table will be needed. You can create it following the example below:
+### `seller-body.buybox` props
 
-- `propName` object:
+| Prop name  | Type    | Description                                                                                                                                                                          | Default value |
+| ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
+| `children` | `array` | Array with `block` components. It's very recommended you follow the [seller-sellector](https://github.com/vtex-apps/seller-selector#advanced-configuration) instrucions to use this. | `null`        |
 
-| Prop name    | Type            | Description    | Default value                                                                                                                               |
-| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
-| `XXXXX`      | `XXXXXX`       | XXXXXXXX         | `XXXXXX`        |
+- `children` array: Array with `block` components.
 
+## Dependences
 
-Remember to also use this Configuration section to  **showcase any necessary disclaimer** related to the app and its blocks, such as the different behavior it may display during its configuration. 
+- [vtex.product-context](https://github.com/vtex-apps/product-context)
+- [vtex.order-manager](https://github.com/vtex-apps/order-manager)
+- [vtex.seller-selector](https://github.com/vtex-apps/seller-selector)
 
-## Modus Operandi *(not mandatory)*
+## Modus Operandi
 
-There are scenarios in which an app can behave differently in a store, according to how it was added to the catalog, for example. It's crucial to go through these **behavioral changes** in this section, allowing users to fully understand the **practical application** of the app in their store.
+### Product Page
 
-If you feel compelled to give further details about the app, such as it's **relationship with the VTEX admin**, don't hesitate to use this section. 
+On product page you can add the `buybox-context` where make sense the behavior of select the Buybox winner. In the example bellow `flex-layout.col#right-col` is the block that contains product values and conditions. See below:
+
+```json
+{
+  ...
+  "flex-layout.row#product-main": {
+    "children": [
+      "flex-layout.col#stack",
+      "flex-layout.col#right-col"
+    ]
+  }
+  ...
+}
+```
+
+After adding the `buybox-context` in this example, the new code will be like bellow:
+
+```diff
+{
+  ...
+  "flex-layout.row#product-main": {
+    "children": [
+      "flex-layout.col#stack",
+-     "flex-layout.col#right-col"
++     "vtex.buybox-context:buybox-context#product-col"
+    ]
+  },
++ "vtex.buybox-context:buybox-context#product-col": {
++   "props": {
++     "sortStrategy": "priceShipping",
++     "triggerCepChangeEvent": "orderForm"
++   },
++   "children": [
++     "flex-layout.col#right-col"
++   ]
++ },
+  ...
+}
+```
+
+:information*source: \_By default the prop `triggerCepChangeEvent` value is `orderForm`, so here it prop is optional.*
+
+### Sellers
+
+With [seller-selector](https://github.com/vtex-apps/seller-selector) and `buybox-context` installed in your theme, do you can create or edit file in `store/blocks/sellers/sellers.jsonc` and add this code bellow:
+
+```json
+{
+  "store.seller": {
+    "blocks": ["vtex.seller-selector:seller-table"]
+  },
+  "vtex.seller-selector:seller-table": {
+    "children": [
+      "vtex.seller-selector:seller-simulate-shipping",
+      "vtex.seller-selector:seller-head",
+      "buybox-context"
+    ]
+  },
+  "buybox-context": {
+    "props": {
+      "sortStrategy": "priceShipping",
+      "triggerCepChangeEvent": "sellerSelector"
+    },
+    "children": ["seller-body.buybox"]
+  },
+  "seller-body.buybox": {
+    "children": ["vtex.seller-selector:seller-row"]
+  }
+}
+```
+
+That way you will have a page similar to this:
+![image](https://user-images.githubusercontent.com/17439470/133501110-e143b472-1b58-4ee8-8759-8096ca32df0c.png)
+
+:information*source: \_To have the full behaviour using `seller-body.buybox` do you need set the `triggerCepChangeEvent` as `sellerSelector` props on `buybox-context`. Because the default value for this parameter is `orderForm`, but on this page we usually use the `seller-simulate-shipping` to calculate shipping*
 
 ## Customization
 
-The first thing that should be present in this section is the sentence below, showing users the recipe pertaining to CSS customization in apps:
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-`In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).`
-
-Thereafter, you should add a single column table with the available CSS handles for the app, like the one below. Note that the Handles must be ordered alphabetically.
-
-| CSS Handles |
-| ----------- | 
-| `XXXXX` | 
-| `XXXXX` | 
-| `XXXXX` | 
-| `XXXXX` | 
-| `XXXXX` |
-
-
-If there are none, add the following sentence instead:
-
-`No CSS Handles are available yet for the app customization.`
+| CSS Handles  |
+| ------------ |
+| `sellerList` |
 
 <!-- DOCS-IGNORE:start -->
 
@@ -98,22 +178,9 @@ Thanks goes to these wonderful people:
 <!-- markdownlint-disable -->
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
 <!-- DOCS-IGNORE:end -->
-
----- 
-
-Check out some documentation models that are already live: 
-- [Breadcrumb](https://github.com/vtex-apps/breadcrumb)
-- [Image](https://vtex.io/docs/components/general/vtex.store-components/image)
-- [Condition Layout](https://vtex.io/docs/components/all/vtex.condition-layout@1.1.6/)
-- [Add To Cart Button](https://vtex.io/docs/components/content-blocks/vtex.add-to-cart-button@0.9.0/)
-- [Store Form](https://vtex.io/docs/components/all/vtex.store-form@0.3.4/)
-
-
-**Upcoming documentation:**
-
- - [Feature/brpa 307 strategy price shipping](https://github.com/vtex-apps/buybox-context/pull/3)

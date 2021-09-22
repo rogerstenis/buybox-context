@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import {
+import type {
   Item,
   ProductContextState,
 } from 'vtex.product-context/react/ProductTypes'

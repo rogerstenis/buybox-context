@@ -1,10 +1,10 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
-import BuyboxContext from '../BuyboxContext'
+import BuyboxApp from '../BuyboxApp'
 
 test('BuyboxContext rendered', () => {
-  const { container } = render(<BuyboxContext />)
+  const { container } = render(<BuyboxApp />)
 
   expect(container).toBeTruthy()
 })
