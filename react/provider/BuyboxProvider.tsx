@@ -11,17 +11,20 @@ import type {
   TriggerCepChangeEventType,
 } from '../typings/types'
 import {
+  sortSellersByCustomExpression,
   sortSellersByPrice,
   sortSellersByPriceShipping,
 } from '../utils/sortSellers'
 
 const SortStrategyFunctions: {
   [key in Strategies]: (
-    sellersInfo: SellerLogisticsInfoResult[]
+    sellersInfo: SellerLogisticsInfoResult[],
+    expression?: string
   ) => SellerLogisticsInfoResult[]
 } = {
   price: sortSellersByPrice,
   priceShipping: sortSellersByPriceShipping,
+  customExpression: sortSellersByCustomExpression,
 }
 
 const SellerLogisticsInfoFunctions: {
@@ -34,19 +37,23 @@ const SellerLogisticsInfoFunctions: {
 interface Props {
   children: ReactNode
   sortStrategy: Strategies
+  expression: string
   triggerCepChangeEvent: TriggerCepChangeEventType
 }
 
 const BuyboxProvider = ({
   children,
   sortStrategy,
+  expression,
   triggerCepChangeEvent,
 }: Props) => {
   const sellersInfoResult =
     SellerLogisticsInfoFunctions[triggerCepChangeEvent]()
 
-  const sortedSellersLogisticInfo =
-    SortStrategyFunctions[sortStrategy](sellersInfoResult)
+  const sortedSellersLogisticInfo = SortStrategyFunctions[sortStrategy](
+    sellersInfoResult,
+    expression
+  )
 
   const { sellers: sortedSellers, logisticsInfo: sortedLogisticsInfo } =
     useReduceSellerLogisticsInfo({

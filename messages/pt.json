@@ -6,6 +6,9 @@
   "admin/editor.buybox-context.triggerCepChangeEvent-description": "Configure qual evento será usado para classificar os vendedores na buybox",
   "admin/editor.buybox-context.price.label": "Preço",
   "admin/editor.buybox-context.price-and-shipping.label": "Preço e Frete",
+  "admin/editor.buybox-context.custom-expression": "Expressão Customizada",
   "admin/editor.buybox-context.order-form.label": "Order Form",
-  "admin/editor.buybox-context.seller-selector.label": "Seller Selector"
+  "admin/editor.buybox-context.seller-selector.label": "Seller Selector",
+  "admin/editor.buybox-context.expression-title": "Expressão",
+  "admin/editor.buybox-context.expression-description": "Configure expressões para ordenar os vendedores: productPrice, shippingPrice"
 }

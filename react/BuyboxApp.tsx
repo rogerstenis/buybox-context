@@ -8,17 +8,20 @@ import type { Strategies, TriggerCepChangeEventType } from './typings/types'
 interface Props {
   sortStrategy?: Strategies
   triggerCepChangeEvent?: TriggerCepChangeEventType
+  expression: string
 }
 
 const BuyboxApp: StorefrontFunctionComponent<Props> = ({
   children,
   sortStrategy,
+  expression,
   triggerCepChangeEvent = 'orderForm',
 }) => {
   return sortStrategy ? (
     <BuyboxProvider
       sortStrategy={sortStrategy}
       triggerCepChangeEvent={triggerCepChangeEvent}
+      expression={expression}
     >
       <ProductWithSortedSellers>{children}</ProductWithSortedSellers>
     </BuyboxProvider>
@@ -43,6 +46,12 @@ const messages = defineMessages({
   triggerCepChangeEventDescription: {
     id: 'admin/editor.buybox-context.triggerCepChangeEvent-description',
   },
+  expressionTitle: {
+    id: 'admin/editor.buybox-context.expression-title',
+  },
+  expressionDescription: {
+    id: 'admin/editor.buybox-context.expression-description',
+  },
 })
 
 BuyboxApp.schema = {
@@ -53,11 +62,17 @@ BuyboxApp.schema = {
       type: 'string',
       title: messages.sortStrategyTitle.id,
       description: messages.sortStrategyDescription.id,
-      enum: ['price', 'priceShipping'],
+      enum: ['price', 'priceShipping', 'customExpression'],
       enumNames: [
         'admin/editor.buybox-context.price.label',
         'admin/editor.buybox-context.price-and-shipping.label',
+        'admin/editor.buybox-context.custom-expression',
       ],
+    },
+    expression: {
+      type: 'string',
+      title: messages.expressionTitle.id,
+      description: messages.expressionDescription.id,
     },
     triggerCepChangeEvent: {
       type: 'string',
