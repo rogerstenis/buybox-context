@@ -1,4 +1,4 @@
-ðŸ“¢ Use this project, [contribute](https://github.com/vtex-apps/buybox-context) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+=â Use this project, [contribute](https://github.com/vtex-apps/buybox-context) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # Buybox Context
 
@@ -63,7 +63,7 @@ Now, you are able to use all the blocks exported by the `buybox-context` app. Ch
 
 - `children` array: Array with `block` components
 
-ðŸ“¢ _The `sortStrategy` and `triggerCepChangeEvent` can be changed using Site Editor_
+=â _The `sortStrategy` and `triggerCepChangeEvent` can be changed using Site Editor_
 
 ### `seller-body.buybox` props
 
@@ -184,3 +184,8 @@ Thanks goes to these wonderful people:
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
 <!-- DOCS-IGNORE:end -->
+
+
+**Upcoming documentation:**
+
+ - [Feature/brpa 352 sort by expression](https://github.com/vtex-apps/buybox-context/pull/5)
