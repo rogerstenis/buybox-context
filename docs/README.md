@@ -189,3 +189,4 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 **Upcoming documentation:**
 
  - [Feature/brpa 352 sort by expression](https://github.com/vtex-apps/buybox-context/pull/5)
+ - [add a conditional field expression](https://github.com/vtex-apps/buybox-context/pull/6)
