@@ -92,53 +92,59 @@ export const sortSellersByCustomExpression = (
       }
     }, {})
 
-  sortedList.sort((sellerA, sellerB) => {
-    if (sellerA.logisticsInfo?.slas?.length === 0) {
-      return 1
-    }
+  try {
+    sortedList.sort((sellerA, sellerB) => {
+      if (sellerA.logisticsInfo?.slas?.length === 0) {
+        return 1
+      }
 
-    if (sellerB.logisticsInfo?.slas?.length === 0) {
-      return -1
-    }
+      if (sellerB.logisticsInfo?.slas?.length === 0) {
+        return -1
+      }
 
-    const { valuesSellerA, valuesSellerB } = Object.keys(variables).reduce(
-      (
-        accumulator: {
-          valuesSellerA: {
-            [key in ExpressionVariablesType]?: any
-          }
-          valuesSellerB: {
-            [key in ExpressionVariablesType]?: any
+      const { valuesSellerA, valuesSellerB } = Object.keys(variables).reduce(
+        (
+          accumulator: {
+            valuesSellerA: {
+              [key in ExpressionVariablesType]?: any
+            }
+            valuesSellerB: {
+              [key in ExpressionVariablesType]?: any
+            }
+          },
+          key: string
+        ) => {
+          const exec = expressionVariables[key as ExpressionVariablesType]
+
+          const valueA = exec?.(sellerA.seller, sellerA.logisticsInfo)
+          const valueB = exec?.(sellerB.seller, sellerB.logisticsInfo)
+
+          return {
+            valuesSellerA: { ...accumulator.valuesSellerA, [key]: valueA ?? 0 },
+            valuesSellerB: { ...accumulator.valuesSellerB, [key]: valueB ?? 0 },
           }
         },
-        key: string
-      ) => {
-        const exec = expressionVariables[key as ExpressionVariablesType]
+        { valuesSellerA: {}, valuesSellerB: {} }
+      )
 
-        const valueA = exec?.(sellerA.seller, sellerA.logisticsInfo)
-        const valueB = exec?.(sellerB.seller, sellerB.logisticsInfo)
+      const parser = new Parser()
+      const expr = parser.parse(expression)
 
-        return {
-          valuesSellerA: { ...accumulator.valuesSellerA, [key]: valueA ?? 0 },
-          valuesSellerB: { ...accumulator.valuesSellerB, [key]: valueB ?? 0 },
-        }
-      },
-      { valuesSellerA: {}, valuesSellerB: {} }
-    )
+      const resultA = expr.evaluate({
+        ...valuesSellerA,
+      })
 
-    const parser = new Parser()
-    const expr = parser.parse(expression)
+      const resultB = expr.evaluate({
+        ...valuesSellerB,
+      })
 
-    const resultA = expr.evaluate({
-      ...valuesSellerA,
+      return resultA - resultB
     })
+  } catch (error) {
+    console.error('Invalid variable on expression: ', error.message)
 
-    const resultB = expr.evaluate({
-      ...valuesSellerB,
-    })
-
-    return resultA - resultB
-  })
+    return sellersInfo
+  }
 
   return sortedList
 }
