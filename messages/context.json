@@ -10,5 +10,5 @@
   "admin/editor.buybox-context.order-form.label": "Order Form",
   "admin/editor.buybox-context.seller-selector.label": "Seller Selector",
   "admin/editor.buybox-context.expression-title": "Expression",
-  "admin/editor.buybox-context.expression-description": "Configure expressions to sort sellers: productPrice, shippingPrice"
+  "admin/editor.buybox-context.expression-description": "Configure expressions to sort sellers: productPrice, productSpotPrice, productAvailableQuantity, shippingPrice"
 }

@@ -55,7 +55,11 @@ export const sortSellersByPriceShipping = (
   return sortedList
 }
 
-type ExpressionVariablesType = 'productPrice' | 'shippingPrice'
+type ExpressionVariablesType =
+  | 'productPrice'
+  | 'productSpotPrice'
+  | 'productAvailableQuantity'
+  | 'shippingPrice'
 
 type ExpressionVariablesDictionaryType = {
   [key in ExpressionVariablesType]?: (
@@ -67,6 +71,10 @@ type ExpressionVariablesDictionaryType = {
 const expressionVariables: ExpressionVariablesDictionaryType = {
   productPrice: (seller: Seller, _logisticsInfo?: LogisticsInfo) =>
     seller.commertialOffer.Price,
+  productSpotPrice: (seller: Seller, _logisticsInfo?: LogisticsInfo) =>
+    seller.commertialOffer.spotPrice,
+  productAvailableQuantity: (seller: Seller, _logisticsInfo?: LogisticsInfo) =>
+    seller.commertialOffer.AvailableQuantity,
   shippingPrice: (_seller: Seller, logisticsInfo?: LogisticsInfo) =>
     logisticsInfo?.slas[0]?.price
       ? logisticsInfo?.slas[0]?.price / 100
@@ -81,6 +89,8 @@ export const sortSellersByCustomExpression = (
 
   if (!expression) return sellersInfo
 
+  const logisticInfoVariables: ExpressionVariablesType[] = ['shippingPrice']
+
   const sortedList = [...sellersInfo]
 
   const variables = Object.keys(expressionVariables)
@@ -94,12 +104,14 @@ export const sortSellersByCustomExpression = (
 
   try {
     sortedList.sort((sellerA, sellerB) => {
-      if (sellerA.logisticsInfo?.slas?.length === 0) {
-        return 1
-      }
+      if (logisticInfoVariables.some((info) => expression.includes(info))) {
+        if (sellerA.logisticsInfo?.slas?.length === 0) {
+          return 1
+        }
 
-      if (sellerB.logisticsInfo?.slas?.length === 0) {
-        return -1
+        if (sellerB.logisticsInfo?.slas?.length === 0) {
+          return -1
+        }
       }
 
       const { valuesSellerA, valuesSellerB } = Object.keys(variables).reduce(
