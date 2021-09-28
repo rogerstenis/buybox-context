@@ -160,7 +160,7 @@ describe('sortSellersByPriceShipping', () => {
 })
 
 describe('sortSellersByCustomExpression', () => {
-  it('should sort sellers correctly', () => {
+  it('should sort sellers correctly with expression productPrice + shippingPrice', () => {
     // arrange
     const expression = 'productPrice + shippingPrice'
 
@@ -174,6 +174,64 @@ describe('sortSellersByCustomExpression', () => {
       seller1,
       seller3,
       seller4,
+    ]
+
+    const unsortedSellers: SellerLogisticsInfoResult[] =
+      unsortedSellersShippingMock
+
+    // act
+    const sortedSellers = sortSellersByCustomExpression(
+      unsortedSellers,
+      expression
+    )
+
+    // assert
+    expect(sortedSellers).toStrictEqual(expected)
+  })
+
+  it('should sort sellers correctly with expression productSpotPrice + shippingPrice', () => {
+    // arrange
+    const expression = 'productSpotPrice + shippingPrice'
+
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersShippingMock
+
+    const expected: SellerLogisticsInfoResult[] = [
+      seller5,
+      seller6,
+      seller2,
+      seller1,
+      seller3,
+      seller4,
+    ]
+
+    const unsortedSellers: SellerLogisticsInfoResult[] =
+      unsortedSellersShippingMock
+
+    // act
+    const sortedSellers = sortSellersByCustomExpression(
+      unsortedSellers,
+      expression
+    )
+
+    // assert
+    expect(sortedSellers).toStrictEqual(expected)
+  })
+
+  it('should sort sellers correctly with expression productAvailableQuantity < 1000', () => {
+    // arrange
+    const expression = 'productAvailableQuantity < 1000'
+
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersShippingMock
+
+    const expected: SellerLogisticsInfoResult[] = [
+      seller1,
+      seller3,
+      seller5,
+      seller2,
+      seller4,
+      seller6,
     ]
 
     const unsortedSellers: SellerLogisticsInfoResult[] =
@@ -268,5 +326,26 @@ describe('sortSellersByCustomExpression', () => {
 
     // assert
     expect(sortedSellers).toStrictEqual(expected)
+  })
+
+  it('should return a same array unsorted when expression is wrong', () => {
+    // arrange
+    const expression = 'wrongWord1 + wrongWord2'
+
+    jest.spyOn(console, 'error').mockImplementation()
+
+    const expected: SellerLogisticsInfoResult[] = unsortedSellersShippingMock
+    const unsortedSellers: SellerLogisticsInfoResult[] =
+      unsortedSellersShippingMock
+
+    // act
+    const sortedSellers = sortSellersByCustomExpression(
+      unsortedSellers,
+      expression
+    )
+
+    // assert
+    expect(sortedSellers).toStrictEqual(expected)
+    expect(console.error).toBeCalledTimes(1)
   })
 })

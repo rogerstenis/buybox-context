@@ -1,4 +1,4 @@
-import { LogisticsInfo, SellerLogisticsInfoResult } from '../typings/types'
+import type { LogisticsInfo, SellerLogisticsInfoResult } from '../typings/types'
 
 const unsortedSellersMock = [
   {

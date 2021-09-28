@@ -1,4 +1,4 @@
-import {
+import type {
   ItemMetadata,
   ProductContextState,
 } from 'vtex.product-context/react/ProductTypes'
