@@ -160,9 +160,9 @@ describe('sortSellersByPriceShipping', () => {
 })
 
 describe('sortSellersByCustomExpression', () => {
-  it('should sort sellers correctly with expression productPrice + shippingPrice', () => {
+  it('should sort sellers correctly with expression productPrice + minShippingPrice', () => {
     // arrange
-    const expression = 'productPrice + shippingPrice'
+    const expression = 'productPrice + minShippingPrice'
 
     const [seller1, seller2, seller3, seller4, seller5, seller6] =
       unsortedSellersShippingMock
@@ -189,9 +189,38 @@ describe('sortSellersByCustomExpression', () => {
     expect(sortedSellers).toStrictEqual(expected)
   })
 
-  it('should sort sellers correctly with expression productSpotPrice + shippingPrice', () => {
+  it('should sort sellers correctly with expression productPrice + maxShippingPrice', () => {
     // arrange
-    const expression = 'productSpotPrice + shippingPrice'
+    const expression = 'productPrice + maxShippingPrice'
+
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersShippingMock
+
+    const expected: SellerLogisticsInfoResult[] = [
+      seller6,
+      seller5,
+      seller2,
+      seller1,
+      seller3,
+      seller4,
+    ]
+
+    const unsortedSellers: SellerLogisticsInfoResult[] =
+      unsortedSellersShippingMock
+
+    // act
+    const sortedSellers = sortSellersByCustomExpression(
+      unsortedSellers,
+      expression
+    )
+
+    // assert
+    expect(sortedSellers).toStrictEqual(expected)
+  })
+
+  it('should sort sellers correctly with expression productSpotPrice + minShippingPrice', () => {
+    // arrange
+    const expression = 'productSpotPrice + minShippingPrice'
 
     const [seller1, seller2, seller3, seller4, seller5, seller6] =
       unsortedSellersShippingMock
@@ -247,9 +276,67 @@ describe('sortSellersByCustomExpression', () => {
     expect(sortedSellers).toStrictEqual(expected)
   })
 
+  it('should sort sellers correctly with expression minShippingEstimate', () => {
+    // arrange
+    const expression = 'minShippingEstimate'
+
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersShippingMock
+
+    const expected: SellerLogisticsInfoResult[] = [
+      seller6,
+      seller5,
+      seller2,
+      seller1,
+      seller3,
+      seller4,
+    ]
+
+    const unsortedSellers: SellerLogisticsInfoResult[] =
+      unsortedSellersShippingMock
+
+    // act
+    const sortedSellers = sortSellersByCustomExpression(
+      unsortedSellers,
+      expression
+    )
+
+    // assert
+    expect(sortedSellers).toStrictEqual(expected)
+  })
+
+  it('should sort sellers correctly with expression maxShippingEstimate', () => {
+    // arrange
+    const expression = 'maxShippingEstimate'
+
+    const [seller1, seller2, seller3, seller4, seller5, seller6] =
+      unsortedSellersShippingMock
+
+    const expected: SellerLogisticsInfoResult[] = [
+      seller5,
+      seller2,
+      seller1,
+      seller6,
+      seller3,
+      seller4,
+    ]
+
+    const unsortedSellers: SellerLogisticsInfoResult[] =
+      unsortedSellersShippingMock
+
+    // act
+    const sortedSellers = sortSellersByCustomExpression(
+      unsortedSellers,
+      expression
+    )
+
+    // assert
+    expect(sortedSellers).toStrictEqual(expected)
+  })
+
   it('should mantain sellers sort', () => {
     // arrange
-    const expression = 'productPrice + shippingPrice'
+    const expression = 'productPrice + minShippingPrice'
 
     const [seller1, seller2, seller3, seller4, seller5, seller6] =
       unsortedSellersShippingMock
@@ -274,7 +361,7 @@ describe('sortSellersByCustomExpression', () => {
 
   it('should set seller to last position when have not SLA', () => {
     // arrange
-    const expression = 'productPrice + shippingPrice'
+    const expression = 'productPrice + minShippingPrice'
 
     const [seller1, seller2, seller3, seller4, seller5, seller6] =
       unsortedSellersShippingMock
