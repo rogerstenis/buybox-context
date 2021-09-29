@@ -5,6 +5,7 @@ import type {
   Seller,
   SellerLogisticsInfoResult,
 } from '../typings/types'
+import { compare, evaluateShippingEstimate } from './shippingEstimate'
 
 export const sortSellersByPrice = (
   sellersInfo: SellerLogisticsInfoResult[]
@@ -59,7 +60,10 @@ type ExpressionVariablesType =
   | 'productPrice'
   | 'productSpotPrice'
   | 'productAvailableQuantity'
-  | 'shippingPrice'
+  | 'minShippingPrice'
+  | 'maxShippingPrice'
+  | 'minShippingEstimate'
+  | 'maxShippingEstimate'
 
 type ExpressionVariablesDictionaryType = {
   [key in ExpressionVariablesType]?: (
@@ -68,6 +72,25 @@ type ExpressionVariablesDictionaryType = {
   ) => number | string | undefined
 }
 
+type LogisticsInfoSLA = LogisticsInfo['slas']
+
+// alternative functions to sort SLA's before sort sellers
+const sortSLAByField = {
+  minPrice: (slas: LogisticsInfoSLA) =>
+    slas.sort((slaA, slaB) => Number(slaA.price) - Number(slaB.price)),
+  maxPrice: (slas: LogisticsInfoSLA) =>
+    slas.sort((slaA, slaB) => Number(slaB.price) - Number(slaA.price)),
+  minShippingEstimate: (slas: LogisticsInfoSLA) =>
+    slas?.sort((slaA, slaB) =>
+      compare(slaA.shippingEstimate, slaB.shippingEstimate)
+    ),
+  maxShippingEstimate: (slas: LogisticsInfoSLA) =>
+    slas?.sort((slaB, slaA) =>
+      compare(slaA.shippingEstimate, slaB.shippingEstimate)
+    ),
+}
+
+// functions used to get expression values based on ExpressionVariablesType inputed by user
 const expressionVariables: ExpressionVariablesDictionaryType = {
   productPrice: (seller: Seller, _logisticsInfo?: LogisticsInfo) =>
     seller.commertialOffer.Price,
@@ -75,10 +98,38 @@ const expressionVariables: ExpressionVariablesDictionaryType = {
     seller.commertialOffer.spotPrice,
   productAvailableQuantity: (seller: Seller, _logisticsInfo?: LogisticsInfo) =>
     seller.commertialOffer.AvailableQuantity,
-  shippingPrice: (_seller: Seller, logisticsInfo?: LogisticsInfo) =>
+  minShippingPrice: (_seller: Seller, logisticsInfo?: LogisticsInfo) =>
     logisticsInfo?.slas[0]?.price
-      ? logisticsInfo?.slas[0]?.price / 100
+      ? sortSLAByField.minPrice(logisticsInfo?.slas)[0]?.price / 100
       : undefined,
+  maxShippingPrice: (_seller: Seller, logisticsInfo?: LogisticsInfo) =>
+    logisticsInfo?.slas[0]?.price
+      ? sortSLAByField.maxPrice(logisticsInfo?.slas)[0]?.price / 100
+      : undefined,
+  minShippingEstimate: (_seller: Seller, logisticsInfo?: LogisticsInfo) => {
+    const shippingEstimate =
+      logisticsInfo &&
+      sortSLAByField.minShippingEstimate(logisticsInfo.slas)[0]
+        ?.shippingEstimate
+
+    if (shippingEstimate) {
+      return evaluateShippingEstimate(shippingEstimate)
+    }
+
+    return undefined
+  },
+  maxShippingEstimate: (_seller: Seller, logisticsInfo?: LogisticsInfo) => {
+    const shippingEstimate =
+      logisticsInfo &&
+      sortSLAByField.maxShippingEstimate(logisticsInfo.slas)[0]
+        ?.shippingEstimate
+
+    if (shippingEstimate) {
+      return evaluateShippingEstimate(shippingEstimate)
+    }
+
+    return undefined
+  },
 }
 
 export const sortSellersByCustomExpression = (
@@ -89,7 +140,12 @@ export const sortSellersByCustomExpression = (
 
   if (!expression) return sellersInfo
 
-  const logisticInfoVariables: ExpressionVariablesType[] = ['shippingPrice']
+  const logisticInfoVariables: ExpressionVariablesType[] = [
+    'minShippingPrice',
+    'maxShippingPrice',
+    'minShippingEstimate',
+    'maxShippingEstimate',
+  ]
 
   const sortedList = [...sellersInfo]
 
@@ -104,6 +160,7 @@ export const sortSellersByCustomExpression = (
 
   try {
     sortedList.sort((sellerA, sellerB) => {
+      // set the sellers without SLA calculated to end of the array
       if (logisticInfoVariables.some((info) => expression.includes(info))) {
         if (sellerA.logisticsInfo?.slas?.length === 0) {
           return 1
