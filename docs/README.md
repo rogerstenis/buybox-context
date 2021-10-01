@@ -190,3 +190,5 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
  - [Feature/brpa 352 sort by expression](https://github.com/vtex-apps/buybox-context/pull/5)
  - [add a conditional field expression](https://github.com/vtex-apps/buybox-context/pull/6)
+ - [add productSpotPrice and productAvailableQuantity variables](https://github.com/vtex-apps/buybox-context/pull/7)
+ - [add shipping estimate as variable](https://github.com/vtex-apps/buybox-context/pull/8)
