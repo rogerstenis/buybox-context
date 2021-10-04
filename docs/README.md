@@ -171,7 +171,7 @@ With [seller-selector](https://github.com/vtex-apps/seller-selector) and `buybox
 That way you will have a page similar to this:
 ![image](https://user-images.githubusercontent.com/17439470/133501110-e143b472-1b58-4ee8-8759-8096ca32df0c.png)
 
-ℹ️ _To have the full behaviour using `seller-body.buybox` do you need set the `triggerCepChangeEvent` as `sellerSelector` props on `buybox-context`. Because the default value for this parameter is `orderForm`, but on this page we usually use the `seller-simulate-shipping` to calculate shipping_
+ℹ️ _To have the full behaviour using `seller-body.buybox`, it will be necessary to set the `triggerCepChangeEvent` as `sellerSelector` props on `buybox-context`. Because the default value for this parameter is `orderForm`, but on this page we usually use the `seller-simulate-shipping` to calculate shipping_
 
 ## Customization
 
