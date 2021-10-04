@@ -137,7 +137,7 @@ After adding the `buybox-context` in this example, the new code will be like bel
 }
 ```
 
-ℹ️ _By default the prop `triggerCepChangeEvent` value is `orderForm`, so here it prop is optional._
+ℹ️ _By default the prop `triggerCepChangeEvent` value is `orderForm`, which makes this prop optional._
 
 ### Sellers
 
