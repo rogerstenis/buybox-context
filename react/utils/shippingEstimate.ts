@@ -6,11 +6,16 @@ export enum UnitTime {
   bd = 3, // business days
 }
 
+const MINUTES = 1
+const HOUR_IN_MINUTES = MINUTES * 60
+const DAYS_IN_MINUTES = HOUR_IN_MINUTES * 24
+const BUSINESS_DAYS_IN_MINUTES = DAYS_IN_MINUTES * 1.4
+
 export const UnitTimeWeight: { [key in keyof typeof UnitTime]: number } = {
-  m: 1,
-  h: 1000,
-  d: 100000,
-  bd: 1000000,
+  m: MINUTES,
+  h: HOUR_IN_MINUTES,
+  d: DAYS_IN_MINUTES,
+  bd: BUSINESS_DAYS_IN_MINUTES,
 }
 
 export const splitShippingEstimate = (shippingEstimate: string) => {
