@@ -1,4 +1,4 @@
-=� Use this project, [contribute](https://github.com/vtex-apps/buybox-context) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+📢 Use this project, [contribute](https://github.com/vtex-apps/buybox-context) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # Buybox Context
 
@@ -54,6 +54,7 @@ Now, you are able to use all the blocks exported by the `buybox-context` app. Ch
   | --------- | -------- | ----------- |
   | `price` | `string` | Sort sellers **only product price**. The sellers at the top of the list will have the lowest prices. |
   | `priceShipping` | `string` | Sort sellers by **product price + shipping price**. The lowest sum between these two values, will be positioned at the top of the sellers list. |
+  | `customExpression` | `string` | Sort sellers by a custom expression based on a math expression, with predefined [`variables`](#custom-expression-variables). The lowest value resultant of this expression, will be positioned at the top of the sellers list. For more details about how to create expressions, click [here](https://github.com/silentmatt/expr-eval#readme) |
 
 - `triggerCepChangeEvent` enum:
   | Prop name | Type | Description |
@@ -63,7 +64,19 @@ Now, you are able to use all the blocks exported by the `buybox-context` app. Ch
 
 - `children` array: Array with `block` components
 
-=� _The `sortStrategy` and `triggerCepChangeEvent` can be changed using Site Editor_
+📢 _The `sortStrategy` and `triggerCepChangeEvent` can be changed using Site Editor_
+
+### Custom expression variables
+
+| Variable                   | Entity   | Description                     |
+| -------------------------- | -------- | ------------------------------- |
+| `productPrice`             | Product  | Product price                   |
+| `productSpotPrice`         | Product  | Product spot price              |
+| `productAvailableQuantity` | Product  | Product available quantity      |
+| `minShippingPrice`         | Shipping | Cheapest shipping price         |
+| `maxShippingPrice`         | Shipping | Most expensive shipping price   |
+| `minShippingEstimate`      | Shipping | Minimum estimated delivery time |
+| `maxShippingEstimate`      | Shipping | Maximum estimated delivery time |
 
 ### `seller-body.buybox` props
 
@@ -78,6 +91,7 @@ Now, you are able to use all the blocks exported by the `buybox-context` app. Ch
 - [vtex.product-context](https://github.com/vtex-apps/product-context)
 - [vtex.order-manager](https://github.com/vtex-apps/order-manager)
 - [vtex.seller-selector](https://github.com/vtex-apps/seller-selector)
+- [expr-eval](https://github.com/silentmatt/expr-eval)
 
 ## Modus Operandi
 
@@ -123,7 +137,7 @@ After adding the `buybox-context` in this example, the new code will be like bel
 }
 ```
 
-:information*source: \_By default the prop `triggerCepChangeEvent` value is `orderForm`, so here it prop is optional.*
+ℹ️ _By default the prop `triggerCepChangeEvent` value is `orderForm`, so here it prop is optional._
 
 ### Sellers
 
@@ -157,7 +171,7 @@ With [seller-selector](https://github.com/vtex-apps/seller-selector) and `buybox
 That way you will have a page similar to this:
 ![image](https://user-images.githubusercontent.com/17439470/133501110-e143b472-1b58-4ee8-8759-8096ca32df0c.png)
 
-:information*source: \_To have the full behaviour using `seller-body.buybox` do you need set the `triggerCepChangeEvent` as `sellerSelector` props on `buybox-context`. Because the default value for this parameter is `orderForm`, but on this page we usually use the `seller-simulate-shipping` to calculate shipping*
+ℹ️ _To have the full behaviour using `seller-body.buybox` do you need set the `triggerCepChangeEvent` as `sellerSelector` props on `buybox-context`. Because the default value for this parameter is `orderForm`, but on this page we usually use the `seller-simulate-shipping` to calculate shipping_
 
 ## Customization
 
@@ -169,7 +183,7 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 <!-- DOCS-IGNORE:start -->
 
-## Contributors (
+## Contributors ✨
 
 Thanks goes to these wonderful people:
 
@@ -185,10 +199,9 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 <!-- DOCS-IGNORE:end -->
 
-
 **Upcoming documentation:**
 
- - [Feature/brpa 352 sort by expression](https://github.com/vtex-apps/buybox-context/pull/5)
- - [add a conditional field expression](https://github.com/vtex-apps/buybox-context/pull/6)
- - [add productSpotPrice and productAvailableQuantity variables](https://github.com/vtex-apps/buybox-context/pull/7)
- - [add shipping estimate as variable](https://github.com/vtex-apps/buybox-context/pull/8)
+- [Feature/brpa 352 sort by expression](https://github.com/vtex-apps/buybox-context/pull/5)
+- [add a conditional field expression](https://github.com/vtex-apps/buybox-context/pull/6)
+- [add productSpotPrice and productAvailableQuantity variables](https://github.com/vtex-apps/buybox-context/pull/7)
+- [add shipping estimate as variable](https://github.com/vtex-apps/buybox-context/pull/8)
