@@ -34,7 +34,7 @@ describe('useNewProductWithSellers', () => {
     }
   })
 
-  it('should return an array empty when have not logistics info', async () => {
+  it('should return an empty array when logistics info does not exists', async () => {
     // arrange
     jest
       .spyOn(reactapollo, 'useLazyQuery')
