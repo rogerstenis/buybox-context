@@ -56,7 +56,7 @@ describe('useNewProductWithSellers', () => {
     expect(sellersInfoResult).toStrictEqual([])
   })
 
-  it('should return correctly when have logistics info', async () => {
+  it('should return correctly when logistics info exists', async () => {
     // arrange
     const shippingData = {
       shipping: {
