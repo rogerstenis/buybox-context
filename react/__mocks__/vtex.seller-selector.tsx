@@ -1,6 +1,8 @@
-import React, { createContext, FC } from 'react'
+import type { FC, ReactNode } from 'react'
+import React, { createContext } from 'react'
 
 interface Props {
+  children: ReactNode
   value: any
 }
 
@@ -14,4 +16,28 @@ const CurrentSellerContextProvider: FC<Props> = ({ children, value }) => {
   )
 }
 
-export { CurrentSellerContextProvider, CurrentSellerContext }
+const SellerContext = createContext({})
+
+const SellerProvider: FC<Props> = ({ children, value }) => {
+  return (
+    <SellerContext.Provider value={value}>{children}</SellerContext.Provider>
+  )
+}
+
+const Context = {
+  SellerProvider,
+  useSellerContext: jest.fn(() => {
+    return {
+      sellerList: null,
+      shippingQuotes: null,
+      setShippingQuotes: jest.fn(),
+      limitShownShippingInformation: 0,
+    }
+  }),
+}
+
+export {
+  CurrentSellerContextProvider,
+  CurrentSellerContext,
+  Context as SellerContext,
+}

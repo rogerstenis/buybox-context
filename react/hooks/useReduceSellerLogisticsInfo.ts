@@ -13,7 +13,6 @@ interface Props {
   sellerLogisticsInfo: SellerLogisticsInfoResult[]
 }
 
-// TODO: criar testes
 export const useReduceSellerLogisticsInfo = ({
   sellerLogisticsInfo,
 }: Props): ReducerAcumulator => {
