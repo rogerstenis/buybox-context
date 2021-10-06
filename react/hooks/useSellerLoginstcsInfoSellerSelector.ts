@@ -4,10 +4,10 @@ import { SellerContext } from 'vtex.seller-selector'
 
 import type { SellerLogisticsInfoResult } from '../typings/types'
 
-// TODO: criar testes
 export const useSellerLoginstcsInfoSellerSelector =
   (): SellerLogisticsInfoResult[] => {
     const { selectedItem } = useProduct() ?? {}
+
     const { shippingQuotes } = SellerContext.useSellerContext()
 
     const logisticsInfo = useMemo(

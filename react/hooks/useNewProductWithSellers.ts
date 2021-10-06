@@ -12,7 +12,6 @@ interface Props {
   sellers: Seller[]
 }
 
-// TODO: criar testes
 export const useNewProductWithSellers = ({
   productContext,
   sellers,
