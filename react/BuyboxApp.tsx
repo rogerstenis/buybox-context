@@ -66,11 +66,12 @@ BuyboxApp.schema = {
           type: 'string',
           title: messages.sortStrategyTitle.id,
           description: messages.sortStrategyDescription.id,
-          enum: ['price', 'priceShipping', 'customExpression'],
+          enum: ['price', 'priceShipping', 'customExpression', 'protocol'],
           enumNames: [
             'admin/editor.buybox-context.price.label',
             'admin/editor.buybox-context.price-and-shipping.label',
             'admin/editor.buybox-context.custom-expression',
+            'admin/editor.buybox-context.protocol',
           ],
         },
       },

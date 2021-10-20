@@ -1,0 +1,15 @@
+query SortSellersProtocol(
+  $skuId: ID!
+  $postalCode: String
+  $country: String
+  $salesChannel: Int
+) {
+  sortSellers(
+    skuId: $skuId
+    postalCode: $postalCode
+    country: $country
+    salesChannel: $salesChannel
+  ) @context(provider: "vtex.buybox-graphql") {
+    sellers
+  }
+}

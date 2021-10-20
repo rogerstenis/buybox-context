@@ -7,6 +7,7 @@
   "admin/editor.buybox-context.price.label": "Preço",
   "admin/editor.buybox-context.price-and-shipping.label": "Preço e Frete",
   "admin/editor.buybox-context.custom-expression": "Expressão Customizada",
+  "admin/editor.buybox-context.protocol": "Protocolo",
   "admin/editor.buybox-context.order-form.label": "Order Form",
   "admin/editor.buybox-context.seller-selector.label": "Seller Selector",
   "admin/editor.buybox-context.expression-title": "Expressão",
