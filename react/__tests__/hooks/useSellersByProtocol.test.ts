@@ -73,7 +73,7 @@ describe('useSellersByProtocol', () => {
     expect(sellersInfoResult).toStrictEqual([])
   })
 
-  it('should return an array empty when data is empty', async () => {
+  it('should return an empty array when data is empty', async () => {
     // arrange
     jest
       .spyOn(reactapollo, 'useQuery')
