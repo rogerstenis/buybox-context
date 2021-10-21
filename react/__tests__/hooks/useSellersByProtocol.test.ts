@@ -48,7 +48,7 @@ describe('useSellersByProtocol', () => {
     ])
   })
 
-  it('should return an array empty when loading is true', async () => {
+  it('should return an empty array when loading is true', async () => {
     // arrange
     jest
       .spyOn(reactapollo, 'useQuery')
