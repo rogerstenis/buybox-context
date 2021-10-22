@@ -5,6 +5,7 @@ import BuyboxContext from '../context/BuyboxContext'
 import { useReduceSellerLogisticsInfo } from '../hooks/useReduceSellerLogisticsInfo'
 import { useSellerLoginstcsInfoSellerSelector } from '../hooks/useSellerLoginstcsInfoSellerSelector'
 import { useSellerLogisticsInfo } from '../hooks/useSellerLogisticsInfo'
+import { useSellersByProtocol } from '../hooks/useSellersByProtocol'
 import type {
   SellerLogisticsInfoResult,
   Strategies,
@@ -25,6 +26,7 @@ const SortStrategyFunctions: {
   price: sortSellersByPrice,
   priceShipping: sortSellersByPriceShipping,
   customExpression: sortSellersByCustomExpression,
+  protocol: useSellersByProtocol,
 }
 
 const SellerLogisticsInfoFunctions: {
