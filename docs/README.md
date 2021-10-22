@@ -55,7 +55,7 @@ Now, you are able to use all the blocks exported by the `buybox-context` app. Ch
   | `price` | `string` | Sort sellers **only product price**. The sellers at the top of the list will have the lowest prices. |
   | `priceShipping` | `string` | Sort sellers by **product price + shipping price**. The lowest sum between these two values, will be positioned at the top of the sellers list. |
   | `customExpression` | `string` | Sort sellers by a custom expression based on a math expression, with predefined [`variables`](#custom-expression-variables). The lowest value resultant of this expression, will be positioned at the top of the sellers list. For more details about how to create expressions, click [here](https://github.com/silentmatt/expr-eval#readme) |
-  | `protocol` | `string` | Sort sellers using a protocol defined on [buybox-graphql](https://github.com/vtex-apps/buybox-graphql). This protocol defines the contract to receive and respond with the sorted data. For that to work, it's necessary to implement a resolver for this contract. The [buybox-resolver](https://github.com/vtex-apps/buybox-resolver) was created as an example of that implamentation. |
+  | `protocol` | `string` | Sort sellers using a protocol defined on [buybox-graphql](https://github.com/vtex-apps/buybox-graphql). This protocol defines the contract to receive and respond with the sorted data. For that to work, it's necessary to implement a resolver for this contract. The [buybox-resolver](https://github.com/vtex-apps/buybox-resolver) was created as an example of that implementation. |
 
 - `triggerCepChangeEvent` enum:
   | Prop name | Type | Description |
