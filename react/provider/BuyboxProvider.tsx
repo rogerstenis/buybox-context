@@ -39,7 +39,7 @@ const SellerLogisticsInfoFunctions: {
 interface Props {
   children: ReactNode
   sortStrategy: Strategies
-  expression: string
+  expression?: string
   triggerCepChangeEvent: TriggerCepChangeEventType
 }
 

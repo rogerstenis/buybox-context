@@ -1,7 +1,6 @@
 import { renderHook } from '@vtex/test-tools/react'
 import { OrderForm } from 'vtex.order-manager'
 import * as productContext from 'vtex.product-context'
-import * as renderRuntime from 'vtex.render-runtime'
 import * as reactapollo from 'react-apollo'
 
 import { useSellerLogisticsInfo } from '../../hooks/useSellerLogisticsInfo'
@@ -22,15 +21,6 @@ describe('useNewProductWithSellers', () => {
           },
         },
       },
-    }
-  })
-
-  const baseRuntime = renderRuntime.useRuntime()
-
-  jest.spyOn(renderRuntime, 'useRuntime').mockImplementation(() => {
-    return {
-      ...baseRuntime,
-      culture: { ...baseRuntime?.culture, country: 'BR' },
     }
   })
 

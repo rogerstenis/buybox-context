@@ -1,6 +1,5 @@
 import { renderHook } from '@vtex/test-tools/react'
 import * as reactapollo from 'react-apollo'
-import * as renderRuntime from 'vtex.render-runtime'
 
 import { useSellersByProtocol } from '../../hooks/useSellersByProtocol'
 import type { SellerLogisticsInfoResult } from '../../typings/types'
@@ -8,14 +7,6 @@ import type { SellerLogisticsInfoResult } from '../../typings/types'
 import { unsortedSellersMock } from '../../__mocks__/sellers'
 
 describe('useSellersByProtocol', () => {
-  const baseRuntime = renderRuntime.useRuntime()
-
-  jest.spyOn(renderRuntime, 'useRuntime').mockImplementation(() => {
-    return {
-      ...baseRuntime,
-      culture: { ...baseRuntime?.culture, country: 'BR' },
-    }
-  })
   it('should return an array with ordered sellers by protocol', async () => {
     // arrange
     jest

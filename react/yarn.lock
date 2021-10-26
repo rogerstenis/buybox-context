@@ -5102,29 +5102,33 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.x/public/@types/vtex.css-handles":
+"vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles":
   version "0.4.4"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.x/public/@types/vtex.css-handles#8c45c6decf9acd2b944e07261686decff93d6422"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles#8c45c6decf9acd2b944e07261686decff93d6422"
 
-"vtex.order-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.x/public/@types/vtex.order-manager":
+"vtex.order-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.11.1/public/@types/vtex.order-manager":
   version "0.11.1"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.x/public/@types/vtex.order-manager#cc658148c5e054900c0d692a26d1ac7c872d9262"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.11.1/public/@types/vtex.order-manager#cc658148c5e054900c0d692a26d1ac7c872d9262"
 
-"vtex.product-context@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.x/public/@types/vtex.product-context":
+"vtex.product-context@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context":
   version "0.10.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.x/public/@types/vtex.product-context#c5e2a97b404004681ee12f4fff7e6b62157786cc"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context#c5e2a97b404004681ee12f4fff7e6b62157786cc"
 
-"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.131.0/public/@types/vtex.render-runtime":
-  version "8.131.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.131.0/public/@types/vtex.render-runtime#dcc88828e3d65ecb4e7538a3623a4b1ddd77e034"
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.132.3/public/@types/vtex.render-runtime":
+  version "8.132.3"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.132.3/public/@types/vtex.render-runtime#c7dd142e384f38bd7a7c841543b73e9349fadc93"
 
-"vtex.seller-selector@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.x/public/@types/vtex.seller-selector":
-  version "0.2.3"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.x/public/@types/vtex.seller-selector#4c431a5b14a52fefb01e88139ce7576dd5ded80d"
+"vtex.seller-selector@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.3.0/public/@types/vtex.seller-selector":
+  version "0.3.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.3.0/public/@types/vtex.seller-selector#c10737a20cf2f92e78e1495d802a7a88110d5012"
 
-"vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.136.9/public/@types/vtex.store-graphql":
-  version "2.136.9"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.136.9/public/@types/vtex.store-graphql#23cefbc32cfa03b02a053feb7c1a6e97cefa1c19"
+"vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.147.3/public/@types/vtex.store-graphql":
+  version "2.147.3"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.147.3/public/@types/vtex.store-graphql#e01d6777359c014f603d38a4896d2030586f115f"
+
+"vtex.store@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store@2.120.1/public/@types/vtex.store":
+  version "2.120.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store@2.120.1/public/@types/vtex.store#fda1d0c7a0226d7229a51a81ec3721bf23d5aa6e"
 
 w3c-hr-time@^1.0.1:
   version "1.0.2"
