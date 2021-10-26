@@ -148,7 +148,7 @@ describe('getAvailableSellers', () => {
     expect(availableSellers).toStrictEqual([])
   })
 
-  it('should return an empty array when all sellers unavailable', () => {
+  it('should return an empty array when all sellers are unavailable', () => {
     // arrange
     const unavailables = sellers.filter(
       (seller) => seller.commertialOffer.AvailableQuantity === 0
