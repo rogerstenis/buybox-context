@@ -7,6 +7,7 @@ import { useProduct } from 'vtex.product-context'
 
 import SimulateShippingQuery from '../graphql/SimulateShipping.gql'
 import type { SellerLogisticsInfoResult } from '../typings/types'
+import { getAvailableSellers } from '../utils'
 
 export const useSellerLogisticsInfo = (): SellerLogisticsInfoResult[] => {
   const { selectedItem, selectedQuantity } = useProduct() ?? {}
@@ -16,14 +17,19 @@ export const useSellerLogisticsInfo = (): SellerLogisticsInfoResult[] => {
     shipping: ShippingQuote
   }>(SimulateShippingQuery)
 
+  const availableSellers = useMemo(
+    () => getAvailableSellers(selectedItem?.sellers),
+    [selectedItem]
+  )
+
   const shippingItems = useMemo(
     () =>
-      selectedItem?.sellers.map((current) => ({
+      availableSellers.map((current) => ({
         id: selectedItem?.itemId,
         quantity: selectedQuantity?.toString() ?? '1',
         seller: current.sellerId,
       })),
-    [selectedItem?.itemId, selectedItem?.sellers, selectedQuantity]
+    [selectedItem?.itemId, availableSellers, selectedQuantity]
   )
 
   const runtime = useRuntime()
@@ -53,8 +59,8 @@ export const useSellerLogisticsInfo = (): SellerLogisticsInfoResult[] => {
     updateShippingQuotes({ variables: { ...variables } })
   }, [updateShippingQuotes, variables])
 
-  return selectedItem && logisticsInfo
-    ? selectedItem.sellers.map((seller, index) => {
+  return availableSellers && logisticsInfo
+    ? availableSellers.map((seller, index) => {
         return {
           seller,
           logisticsInfo: logisticsInfo[index],

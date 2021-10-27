@@ -3,6 +3,7 @@ import { useProduct } from 'vtex.product-context'
 import { SellerContext } from 'vtex.seller-selector'
 
 import type { SellerLogisticsInfoResult } from '../typings/types'
+import { getAvailableSellers } from '../utils'
 
 export const useSellerLoginstcsInfoSellerSelector =
   (): SellerLogisticsInfoResult[] => {
@@ -15,12 +16,10 @@ export const useSellerLoginstcsInfoSellerSelector =
       [shippingQuotes?.logisticsInfo]
     )
 
-    return selectedItem
-      ? selectedItem.sellers.map((seller, index) => {
-          return {
-            seller,
-            logisticsInfo: logisticsInfo ? logisticsInfo[index] : undefined,
-          }
-        })
-      : []
+    return getAvailableSellers(selectedItem?.sellers).map((seller, index) => {
+      return {
+        seller,
+        logisticsInfo: logisticsInfo ? logisticsInfo[index] : undefined,
+      }
+    })
   }

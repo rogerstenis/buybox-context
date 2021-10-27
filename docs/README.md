@@ -129,7 +129,9 @@ After adding the `buybox-context` in this example, the new code will be like bel
   },
 + "vtex.buybox-context:buybox-context#product-col": {
 +   "props": {
-+     "sortStrategy": "priceShipping",
++     "conditionalStrategy": {
++       "sortStrategy": "priceShipping"
++     },
 +     "triggerCepChangeEvent": "orderForm"
 +   },
 +   "children": [
@@ -148,7 +150,7 @@ With [seller-selector](https://github.com/vtex-apps/seller-selector) and `buybox
 
 ```json
 {
-  "store.seller": {
+  "store.sellers": {
     "blocks": ["vtex.seller-selector:seller-table"]
   },
   "vtex.seller-selector:seller-table": {
@@ -160,7 +162,9 @@ With [seller-selector](https://github.com/vtex-apps/seller-selector) and `buybox
   },
   "buybox-context": {
     "props": {
-      "sortStrategy": "priceShipping",
+      "conditionalStrategy": {
+        "sortStrategy": "priceShipping"
+      },
       "triggerCepChangeEvent": "sellerSelector"
     },
     "children": ["seller-body.buybox"]

@@ -8,14 +8,14 @@ import type { Strategies, TriggerCepChangeEventType } from './typings/types'
 interface Props {
   conditionalStrategy?: {
     sortStrategy?: Strategies
-    expression: string
+    expression?: string
   }
   triggerCepChangeEvent?: TriggerCepChangeEventType
 }
 
 const BuyboxApp: StorefrontFunctionComponent<Props> = ({
   children,
-  conditionalStrategy,
+  conditionalStrategy = { sortStrategy: 'price' },
   triggerCepChangeEvent = 'orderForm',
 }) => {
   return conditionalStrategy?.sortStrategy ? (

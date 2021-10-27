@@ -1,4 +1,5 @@
 {
+  "name": "buybox-context",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -6,10 +7,6 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
     "lint:locales": "intl-equalizer",
     "test": "cd ./react && yarn test"
-  },
-  "intl-equalizer": {
-    "referenceLocale": "en",
-    "localeDirectory": "messages"
   },
   "husky": {
     "hooks": {
@@ -19,6 +16,9 @@
   "lint-staged": {
     "*.{ts,js,tsx,jsx}": [
       "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,graphql,gql}": [
       "prettier --write"
     ],
     "*.json": [
@@ -39,5 +39,9 @@
     "prettier": "^2.2.0",
     "typescript": "^3.9.6",
     "@vtex/danger": "^0.2.7"
+  },
+  "intl-equalizer": {
+    "referenceLocale": "en",
+    "localeDirectory": "messages"
   }
 }
