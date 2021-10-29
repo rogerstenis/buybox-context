@@ -30,7 +30,7 @@ export const useSellersByProtocol = (
     culture: { country },
   } = runtime
 
-  const { data, loading } = useQuery<
+  const { data, loading, error } = useQuery<
     SortedSellersProtocol,
     SortedSellersProtocolVariables
   >(SortSellersProtocol, {
@@ -40,7 +40,10 @@ export const useSellersByProtocol = (
       postalCode:
         orderFormContext.orderForm?.shipping?.selectedAddress?.postalCode ?? '',
     },
+    ssr: false,
   })
+
+  if (error) throw error
 
   if (!sellersInfo.length || !data?.sortSellers?.sellers || loading) {
     return []

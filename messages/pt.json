@@ -11,5 +11,6 @@
   "admin/editor.buybox-context.order-form.label": "Order Form",
   "admin/editor.buybox-context.seller-selector.label": "Seller Selector",
   "admin/editor.buybox-context.expression-title": "Expressão",
-  "admin/editor.buybox-context.expression-description": "Configure expressões para ordenar os vendedores: productPrice, productSpotPrice, productAvailableQuantity, minShippingPrice, maxShippingPrice, minShippingEstimate, maxShippingEstimate"
+  "admin/editor.buybox-context.expression-description": "Configure expressões para ordenar os vendedores: productPrice, productSpotPrice, productAvailableQuantity, minShippingPrice, maxShippingPrice, minShippingEstimate, maxShippingEstimate",
+  "admin/buybox-context.protocol-error": "Ocorreu um erro na execução do Protocolo de Ordenação e a Estratégia de ordenação foi alterada para Preço."
 }

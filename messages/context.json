@@ -11,5 +11,6 @@
   "admin/editor.buybox-context.order-form.label": "Order Form",
   "admin/editor.buybox-context.seller-selector.label": "Seller Selector",
   "admin/editor.buybox-context.expression-title": "Expression",
-  "admin/editor.buybox-context.expression-description": "Configure expressions to sort sellers: productPrice, productSpotPrice, productAvailableQuantity, minShippingPrice, maxShippingPrice, minShippingEstimate, maxShippingEstimate"
+  "admin/editor.buybox-context.expression-description": "Configure expressions to sort sellers: productPrice, productSpotPrice, productAvailableQuantity, minShippingPrice, maxShippingPrice, minShippingEstimate, maxShippingEstimate",
+  "admin/buybox-context.protocol-error": "An error ocurred on execute Sort Protocol and the Sort Strategy was changed to Price."
 }

@@ -1,9 +1,9 @@
 import React from 'react'
-import { defineMessages } from 'react-intl'
 
 import { ProductWithSortedSellers } from './components/ProductWithSortedSellers'
 import BuyboxProvider from './provider/BuyboxProvider'
 import type { Strategies, TriggerCepChangeEventType } from './typings/types'
+import { messages } from './utils/messages'
 
 interface Props {
   conditionalStrategy?: {
@@ -30,30 +30,6 @@ const BuyboxApp: StorefrontFunctionComponent<Props> = ({
     <>{children}</>
   )
 }
-
-const messages = defineMessages({
-  title: {
-    id: 'admin/editor.buybox-context.title',
-  },
-  sortStrategyTitle: {
-    id: 'admin/editor.buybox-context.sortStrategy-title',
-  },
-  sortStrategyDescription: {
-    id: 'admin/editor.buybox-context.sortStrategy-description',
-  },
-  triggerCepChangeEventTitle: {
-    id: 'admin/editor.buybox-context.triggerCepChangeEvent-title',
-  },
-  triggerCepChangeEventDescription: {
-    id: 'admin/editor.buybox-context.triggerCepChangeEvent-description',
-  },
-  expressionTitle: {
-    id: 'admin/editor.buybox-context.expression-title',
-  },
-  expressionDescription: {
-    id: 'admin/editor.buybox-context.expression-description',
-  },
-})
 
 BuyboxApp.schema = {
   title: messages.title.id,
