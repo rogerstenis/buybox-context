@@ -66,7 +66,7 @@ const BuyboxProvider = ({
   } catch (error) {
     sortedSellersLogisticInfo = SortStrategyFunctions.price(sellersInfoResult)
 
-    console.warn(intl.formatMessage(messages.protocolError), error)
+    console.error(intl.formatMessage(messages.protocolError), '\n', error)
   }
 
   const { sellers: sortedSellers, logisticsInfo: sortedLogisticsInfo } =
