@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Error handling when protocol query throws an exception
+
+### Fixed
+
+- Load query protocol with ssr: false
+
 ## [0.0.2] - 2021-10-27
 
 ### Fixed

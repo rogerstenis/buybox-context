@@ -1,9 +1,9 @@
 import React from 'react'
-import { defineMessages } from 'react-intl'
 
 import { ProductWithSortedSellers } from './components/ProductWithSortedSellers'
 import BuyboxProvider from './provider/BuyboxProvider'
 import type { Strategies, TriggerCepChangeEventType } from './typings/types'
+import { messages } from './utils/messages'
 
 interface Props {
   conditionalStrategy?: {
@@ -31,30 +31,6 @@ const BuyboxApp: StorefrontFunctionComponent<Props> = ({
   )
 }
 
-const messages = defineMessages({
-  title: {
-    id: 'admin/editor.buybox-context.title',
-  },
-  sortStrategyTitle: {
-    id: 'admin/editor.buybox-context.sortStrategy-title',
-  },
-  sortStrategyDescription: {
-    id: 'admin/editor.buybox-context.sortStrategy-description',
-  },
-  triggerCepChangeEventTitle: {
-    id: 'admin/editor.buybox-context.triggerCepChangeEvent-title',
-  },
-  triggerCepChangeEventDescription: {
-    id: 'admin/editor.buybox-context.triggerCepChangeEvent-description',
-  },
-  expressionTitle: {
-    id: 'admin/editor.buybox-context.expression-title',
-  },
-  expressionDescription: {
-    id: 'admin/editor.buybox-context.expression-description',
-  },
-})
-
 BuyboxApp.schema = {
   title: messages.title.id,
   type: 'object',
@@ -68,10 +44,10 @@ BuyboxApp.schema = {
           description: messages.sortStrategyDescription.id,
           enum: ['price', 'priceShipping', 'customExpression', 'protocol'],
           enumNames: [
-            'admin/editor.buybox-context.price.label',
-            'admin/editor.buybox-context.price-and-shipping.label',
-            'admin/editor.buybox-context.custom-expression',
-            'admin/editor.buybox-context.protocol',
+            'buybox-context.price.label',
+            'buybox-context.price-and-shipping.label',
+            'buybox-context.custom-expression',
+            'buybox-context.protocol',
           ],
         },
       },
@@ -100,8 +76,8 @@ BuyboxApp.schema = {
       description: messages.triggerCepChangeEventDescription.id,
       enum: ['orderForm', 'sellerSelector'],
       enumNames: [
-        'admin/editor.buybox-context.order-form.label',
-        'admin/editor.buybox-context.seller-selector.label',
+        'buybox-context.order-form.label',
+        'buybox-context.seller-selector.label',
       ],
       default: 'orderForm',
     },

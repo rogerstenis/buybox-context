@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import React from 'react'
+import { useIntl } from 'react-intl'
 
 import BuyboxContext from '../context/BuyboxContext'
 import { useReduceSellerLogisticsInfo } from '../hooks/useReduceSellerLogisticsInfo'
@@ -11,6 +12,7 @@ import type {
   Strategies,
   TriggerCepChangeEventType,
 } from '../typings/types'
+import { messages } from '../utils/messages'
 import {
   sortSellersByCustomExpression,
   sortSellersByPrice,
@@ -49,13 +51,23 @@ const BuyboxProvider = ({
   expression,
   triggerCepChangeEvent,
 }: Props) => {
+  const intl = useIntl()
+
   const sellersInfoResult =
     SellerLogisticsInfoFunctions[triggerCepChangeEvent]()
 
-  const sortedSellersLogisticInfo = SortStrategyFunctions[sortStrategy](
-    sellersInfoResult,
-    expression
-  )
+  let sortedSellersLogisticInfo: SellerLogisticsInfoResult[] = []
+
+  try {
+    sortedSellersLogisticInfo = SortStrategyFunctions[sortStrategy](
+      sellersInfoResult,
+      expression
+    )
+  } catch (error) {
+    sortedSellersLogisticInfo = SortStrategyFunctions.price(sellersInfoResult)
+
+    console.error(intl.formatMessage(messages.protocolError), '\n', error)
+  }
 
   const { sellers: sortedSellers, logisticsInfo: sortedLogisticsInfo } =
     useReduceSellerLogisticsInfo({
