@@ -60,5 +60,11 @@ export const useSellersByProtocol = (
     }
   )
 
-  return data.sortSellers.sellers.map((sellerId) => sellersInfoIndex[sellerId])
+  return data.sortSellers.sellers.reduce((acummulator, sellerId) => {
+    if (sellersInfoIndex[sellerId]) {
+      acummulator.push(sellersInfoIndex[sellerId])
+    }
+
+    return acummulator
+  }, [] as SellerLogisticsInfoResult[])
 }

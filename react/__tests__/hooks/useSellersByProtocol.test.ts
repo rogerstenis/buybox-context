@@ -106,4 +106,36 @@ describe('useSellersByProtocol', () => {
     // assert
     expect(sellersInfoResult).toStrictEqual([])
   })
+
+  it('should return an array without sellers that do not exists on sellerLogisticsInfo', async () => {
+    // arrange
+    jest
+      .spyOn(reactapollo, 'useQuery')
+      .mockImplementation()
+      .mockReturnValue({
+        data: {
+          sortSellers: {
+            sellers: ['10', '20', '3', '1', '4', '2', '5'],
+          },
+        },
+      } as any)
+
+    const sellerLogisticsInfo: SellerLogisticsInfoResult[] = unsortedSellersMock
+
+    const [seller1, seller2, seller3, seller4, seller5] = unsortedSellersMock
+
+    // act
+    const {
+      result: { current: sellersInfoResult },
+    } = renderHook(() => useSellersByProtocol(sellerLogisticsInfo))
+
+    // assert
+    expect(sellersInfoResult).toStrictEqual([
+      seller3,
+      seller1,
+      seller4,
+      seller2,
+      seller5,
+    ])
+  })
 })
