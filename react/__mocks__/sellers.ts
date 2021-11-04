@@ -267,10 +267,6 @@ const unsortedSellersShippingMock = [
         Installments: [],
       },
     },
-    logisticsInfo: {
-      itemIndex: 1,
-      slas: [],
-    } as LogisticsInfo,
   },
   {
     seller: {
