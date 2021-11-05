@@ -14,9 +14,9 @@ describe('useSellerLoginstcsInfoSellerSelector', () => {
       sellerList: null,
       shippingQuotes: {
         logisticsInfo: [
-          { itemIndex: 1, slas: [] },
+          { itemIndex: 0, slas: [] },
           {
-            itemIndex: 2,
+            itemIndex: 1,
             slas: [
               {
                 id: '1',

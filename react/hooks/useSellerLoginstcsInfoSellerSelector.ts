@@ -2,8 +2,8 @@ import { useMemo } from 'react'
 import { useProduct } from 'vtex.product-context'
 import { SellerContext } from 'vtex.seller-selector'
 
-import type { SellerLogisticsInfoResult } from '../typings/types'
-import { getAvailableSellers } from '../utils'
+import type { LogisticsInfo, SellerLogisticsInfoResult } from '../typings/types'
+import { isAvailableSellers } from '../utils'
 
 export const useSellerLoginstcsInfoSellerSelector =
   (): SellerLogisticsInfoResult[] => {
@@ -12,14 +12,25 @@ export const useSellerLoginstcsInfoSellerSelector =
     const { shippingQuotes } = SellerContext.useSellerContext()
 
     const logisticsInfo = useMemo(
-      () => shippingQuotes?.logisticsInfo,
+      () =>
+        shippingQuotes?.logisticsInfo.reduce((acummulator, currentValue) => {
+          acummulator[currentValue.itemIndex] = currentValue
+
+          return acummulator
+        }, {} as { [key in string]: LogisticsInfo }),
       [shippingQuotes?.logisticsInfo]
     )
 
-    return getAvailableSellers(selectedItem?.sellers).map((seller, index) => {
-      return {
-        seller,
-        logisticsInfo: logisticsInfo ? logisticsInfo[index] : undefined,
-      }
-    })
+    const sellersLogisticsInfo = selectedItem
+      ? selectedItem.sellers.map((seller, index) => {
+          return {
+            seller,
+            logisticsInfo: logisticsInfo ? logisticsInfo[index] : undefined,
+          }
+        })
+      : []
+
+    return sellersLogisticsInfo.filter((sellerLogisticsInfo) =>
+      isAvailableSellers(sellerLogisticsInfo.seller)
+    )
   }
