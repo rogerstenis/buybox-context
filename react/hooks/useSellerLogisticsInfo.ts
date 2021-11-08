@@ -6,7 +6,7 @@ import { OrderForm } from 'vtex.order-manager'
 import { useProduct } from 'vtex.product-context'
 
 import SimulateShippingQuery from '../graphql/SimulateShipping.gql'
-import type { SellerLogisticsInfoResult } from '../typings/types'
+import type { LogisticsInfo, SellerLogisticsInfoResult } from '../typings/types'
 import { getAvailableSellers } from '../utils'
 
 export const useSellerLogisticsInfo = (): SellerLogisticsInfoResult[] => {
@@ -51,7 +51,15 @@ export const useSellerLogisticsInfo = (): SellerLogisticsInfoResult[] => {
   ])
 
   const logisticsInfo = useMemo(
-    () => shippingData?.shipping.logisticsInfo,
+    () =>
+      shippingData?.shipping.logisticsInfo?.reduce(
+        (acummulator, currentValue) => {
+          acummulator[currentValue.itemIndex] = currentValue
+
+          return acummulator
+        },
+        {} as { [key in string]: LogisticsInfo }
+      ),
     [shippingData?.shipping.logisticsInfo]
   )
 
