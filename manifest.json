@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "buybox-context",
-  "version": "0.1.2-beta.0",
+  "version": "0.1.2",
   "title": "Buybox context",
   "description": "Context with product features",
   "builders": {
@@ -20,7 +20,9 @@
     "vtex.buybox-graphql": "0.x",
     "vtex.store": "2.x"
   },
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "policies": [],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

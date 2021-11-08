@@ -28,5 +28,5 @@
     "vtex.store": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store@2.120.1/public/@types/vtex.store",
     "vtex.store-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.147.3/public/@types/vtex.store-graphql"
   },
-  "version": "0.1.1"
+  "version": "0.1.2"
 }
