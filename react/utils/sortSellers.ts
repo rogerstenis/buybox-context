@@ -31,11 +31,11 @@ export const sortSellersByPriceShipping = (
   const sortedList = [...sellersInfo]
 
   sortedList.sort((sellerA, sellerB) => {
-    if (sellerA.logisticsInfo?.slas?.length === 0) {
+    if (!sellerA.logisticsInfo?.slas?.length) {
       return 1
     }
 
-    if (sellerB.logisticsInfo?.slas?.length === 0) {
+    if (!sellerB.logisticsInfo?.slas?.length) {
       return -1
     }
 
@@ -162,11 +162,11 @@ export const sortSellersByCustomExpression = (
     sortedList.sort((sellerA, sellerB) => {
       // set the sellers without SLA calculated to end of the array
       if (logisticInfoVariables.some((info) => expression.includes(info))) {
-        if (sellerA.logisticsInfo?.slas?.length === 0) {
+        if (!sellerA.logisticsInfo?.slas?.length) {
           return 1
         }
 
-        if (sellerB.logisticsInfo?.slas?.length === 0) {
+        if (!sellerB.logisticsInfo?.slas?.length) {
           return -1
         }
       }
