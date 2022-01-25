@@ -1,5 +1,3 @@
-> ### 🚧 THIS IS A WORK IN PROGRESS AND SHOULD NOT BE USED IN PRODUCTION!
-
 📢 Use this project, [contribute](https://github.com/vtex-apps/buybox-context) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # Buybox Context
